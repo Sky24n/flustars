@@ -77,8 +77,13 @@ getWidgetLocalToGlobal    : 获取widget在屏幕上的坐标.
 // Import package
 import 'package:flustars/flustars.dart';
 
+//SpUtil
+SpUtil spUtil = await SpUtil.getInstance();
+//SpUtil.remove("username");
+SpUtil.putString("username", "sky224");
+LogUtil.e("username: " + SpUtil.getString("username").toString());
 
-//First Page init. Notice!!!
+//ScreenUtil
 ScreenUtil.getInstance().init(context);
 
 ScreenUtil.screenWidth
@@ -86,7 +91,7 @@ ScreenUtil.screenHeight
 ScreenUtil.statusBarHeight
 ScreenUtil.screenDensity
 
-// Global variable，Reference example
+//WidgetUtil
 WidgetUtil widgetUtil = new WidgetUtil();
 
 @override
