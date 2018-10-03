@@ -2,7 +2,7 @@
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。依赖于common_utils库。如果你有好的工具类欢迎PR.  
-### common_utils  
+### flustars  
  1、SpUtil       : SharedPreferences 工具类.  
  2、ScreenUtil   : 获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
  3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标.  
