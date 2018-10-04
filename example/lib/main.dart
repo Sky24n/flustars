@@ -1,4 +1,3 @@
-import 'package:common_utils/common_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     SpUtil spUtil = await SpUtil.getInstance();
     //SpUtil.remove("username");
     SpUtil.putString("username", "sky224");
-    LogUtil.e("username: " + SpUtil.getString("username").toString());
+    print("username: " + SpUtil.getString("username").toString());
   }
 
   @override
