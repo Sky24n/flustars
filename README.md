@@ -2,12 +2,12 @@
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。依赖于[common_utils](https://github.com/Sky24n/common_utils)库。如果你有好的工具类欢迎PR.  
-### flustars  
+### [flustars](https://github.com/Sky24n/common_utils)  
  1、SpUtil       : SharedPreferences 工具类.  
  2、ScreenUtil   : 获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
  3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标.  
 
-### common_utils
+### [common_utils](https://github.com/Sky24n/common_utils)  
  1、TimelineUtil : 时间轴.(新)  
  2、TimerUtil    : 倒计时，定时任务.(新)  
  3、MoneyUtil    : 分转元，支持格式输出.(新)  
@@ -33,7 +33,7 @@
 dependencies:
   flustars: x.x.x  #latest version
 ```
-* #### ScreenUtil
+* #### SpUtil
 ```
 getString
 putString
