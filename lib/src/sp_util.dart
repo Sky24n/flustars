@@ -13,7 +13,7 @@ import 'package:synchronized/synchronized.dart';
 ///
 class SpUtil {
   static SpUtil _singleton;
-  static SharedPreferences _sharedPreferences;
+  static SharedPreferences _SP;
   static Lock _lock = Lock();
 
   static Future<SpUtil> getInstance() async {
@@ -27,62 +27,75 @@ class SpUtil {
   }
 
   static void init() async {
-    _sharedPreferences = await SharedPreferences.getInstance();
+    _SP = await SharedPreferences.getInstance();
   }
 
   static String getString(String key) {
-    return _sharedPreferences.getString(key);
+    if (_SP == null) return null;
+    return _SP.getString(key);
   }
 
   static Future<bool> putString(String key, String value) {
-    return _sharedPreferences.setString(key, value);
+    if (_SP == null) return null;
+    return _SP.setString(key, value);
   }
 
   static bool getBool(String key) {
-    return _sharedPreferences.getBool(key);
+    if (_SP == null) return null;
+    return _SP.getBool(key);
   }
 
   static Future<bool> putBool(String key, bool value) {
-    return _sharedPreferences.setBool(key, value);
+    if (_SP == null) return null;
+    return _SP.setBool(key, value);
   }
 
   static int getInt(String key) {
-    return _sharedPreferences.getInt(key);
+    if (_SP == null) return null;
+    return _SP.getInt(key);
   }
 
   static Future<bool> putInt(String key, int value) {
-    return _sharedPreferences.setInt(key, value);
+    if (_SP == null) return null;
+    return _SP.setInt(key, value);
   }
 
   static double getDouble(String key) {
-    return _sharedPreferences.getDouble(key);
+    if (_SP == null) return null;
+    return _SP.getDouble(key);
   }
 
   static Future<bool> putDouble(String key, double value) {
-    return _sharedPreferences.setDouble(key, value);
+    if (_SP == null) return null;
+    return _SP.setDouble(key, value);
   }
 
   static List<String> getStringList(String key) {
-    return _sharedPreferences.getStringList(key);
+    return _SP.getStringList(key);
   }
 
   static Future<bool> putStringList(String key, List<String> value) {
-    return _sharedPreferences.setStringList(key, value);
+    if (_SP == null) return null;
+    return _SP.setStringList(key, value);
   }
 
   static dynamic getDynamic(String key) {
-    return _sharedPreferences.get(key);
+    if (_SP == null) return null;
+    return _SP.get(key);
   }
 
   static Set<String> getKeys() {
-    return _sharedPreferences.getKeys();
+    if (_SP == null) return null;
+    return _SP.getKeys();
   }
 
   static Future<bool> remove(String key) {
-    return _sharedPreferences.remove(key);
+    if (_SP == null) return null;
+    return _SP.remove(key);
   }
 
   static Future<bool> clear() {
-    return _sharedPreferences.clear();
+    if (_SP == null) return null;
+    return _SP.clear();
   }
 }
