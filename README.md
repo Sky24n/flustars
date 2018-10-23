@@ -49,6 +49,7 @@ getDynamic
 getKeys
 remove
 clear
+isInitialized
 ```
 
 * #### ScreenUtil

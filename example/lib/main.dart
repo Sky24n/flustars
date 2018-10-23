@@ -16,8 +16,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   void test() async {
+    print("SpUtil: " + SpUtil.isInitialized().toString());
     SpUtil spUtil = await SpUtil.getInstance();
     //SpUtil.remove("username");
+    print("SpUtil: " + SpUtil.isInitialized().toString());
     SpUtil.putString("username", "sky224");
     print("username: " + SpUtil.getString("username").toString());
   }
