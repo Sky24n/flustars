@@ -15,7 +15,7 @@
  5、DateUtil     : 日期转换格式化输出.  
  6、RegexUtil    : 正则验证手机号，身份证，邮箱等等.  
  7、NumUtil      : 保留x位小数, 精确加、减、乘、除, 防止精度丢失.  
- 8、ObjectUtil  : 判断对象是否为空(String List Map),判断两个List是否相等. 
+ 8、ObjectUtil   : 判断对象是否为空(String List Map),判断两个List是否相等. 
 
 ## Demo: [flutter_demos](https://github.com/Sky24n/flutter_demos).
 ## APK: [点击下载v1.0.4](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_demos.apk)
