@@ -10,11 +10,11 @@
 ### [common_utils](https://github.com/Sky24n/common_utils)  
  1、TimelineUtil : 时间轴.(新)  
  2、TimerUtil    : 倒计时，定时任务.(新)  
- 3、MoneyUtil    : 分转元，支持格式输出.(新)  
+ 3、MoneyUtil    : 精确转换，元转分，分转元，支持格式输出.(新)  
  4、LogUtil      : 简单封装打印日志.(新)  
  5、DateUtil     : 日期转换格式化输出.  
  6、RegexUtil    : 正则验证手机号，身份证，邮箱等等.  
- 7、NumUtil      : 保留x位小数.  
+ 7、NumUtil      : 保留x位小数, 精确加、减、乘、除, 防止精度丢失.  
  8、ObjectUtil  : 判断对象是否为空(String List Map),判断两个List是否相等. 
 
 ## Demo: [flutter_demos](https://github.com/Sky24n/flutter_demos).
@@ -66,7 +66,7 @@ getOrientation            : 获取当前屏幕方向.
 
 * #### WidgetUtil
 ```
-asyncPrepare              : 监听widget宽高变化,callback返回宽高等参数.
+asyncPrepare              : Widget渲染监听，监听widget宽高变化,callback返回宽高等参数.
 getWidgetBounds           : 获取widget 宽高.
 getWidgetLocalToGlobal    : 获取widget在屏幕上的坐标.
 ```
