@@ -9,6 +9,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String _userName = '';
+
   @override
   void initState() {
     super.initState();
@@ -20,8 +22,12 @@ class _MyAppState extends State<MyApp> {
     SpUtil spUtil = await SpUtil.getInstance();
     //SpUtil.remove("username");
     print("SpUtil: " + SpUtil.isInitialized().toString());
-    SpUtil.putString("username", "sky224");
+    SpUtil.putString("username", "sky24");
     print("username: " + SpUtil.getString("username").toString());
+    if (!mounted) return;
+    setState(() {
+      _userName = SpUtil.getString("username");
+    });
   }
 
   @override
@@ -32,7 +38,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: new Center(
-          child: new Text('Running on: '),
+          child: new Text('username: $_userName'),
         ),
       ),
     );

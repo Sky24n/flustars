@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui show window;
 
 /**
  * @Author: thl
@@ -22,8 +23,12 @@ class ScreenUtil {
     return singleton;
   }
 
-  void init(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
+  ScreenUtil() {
+    init();
+  }
+
+  void init() {
+    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     _mediaQueryData = mediaQuery;
     _screenWidth = mediaQuery.size.width;
     _screenHeight = mediaQuery.size.height;
@@ -33,21 +38,21 @@ class ScreenUtil {
   }
 
   ///screen width
-  static double get screenWidth => _screenWidth;
+  double get screenWidth => _screenWidth;
 
   ///screen height
-  static double get screenHeight => _screenHeight;
+  double get screenHeight => _screenHeight;
 
   ///appBar height
-  static double get appBarHeight => _appBarHeight;
+  double get appBarHeight => _appBarHeight;
 
   ///screen density
-  static double get screenDensity => _screenDensity;
+  double get screenDensity => _screenDensity;
 
   ///status bar Height
-  static double get statusBarHeight => _statusBarHeight;
+  double get statusBarHeight => _statusBarHeight;
 
-  static MediaQueryData get mediaQueryData => _mediaQueryData;
+  MediaQueryData get mediaQueryData => _mediaQueryData;
 
   static double getScreenWidth(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);

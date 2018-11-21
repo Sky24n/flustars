@@ -2,6 +2,18 @@
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR.  
+
+## 更新说明  
+v0.1.4(2018.11.22)  
+ScreenUtil不依赖context获取屏幕数据。  
+
+新增MyAppBar,不需要GlobalKey就能openDrawer。  
+
+## 关于示例
+本项目中不包含示例，所有示例均在[flutter_demos](https://github.com/Sky24n/flutter_demos)项目中。  
+
+另外一个完整项目[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)，欢迎体验！
+
 ### [flustars](https://github.com/Sky24n/flustars)  
  1、SpUtil       : SharedPreferences 工具类.  
  2、ScreenUtil   : 获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
@@ -115,4 +127,6 @@ double dx = offset.dx
 double dx = offset.dy
 
 ```
+
+
 
