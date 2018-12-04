@@ -12,7 +12,7 @@ ScreenUtil不依赖context获取屏幕数据。
 ## 关于示例
 本项目中不包含示例，所有示例均在[flutter_demos](https://github.com/Sky24n/flutter_demos)项目中。  
 
-另外一个完整项目[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)，欢迎体验！
+完整项目[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)，包含启动页，引导页，主题色切换，应用国际化多语言，版本更新等功能。欢迎体验！  
 
 ### [flustars](https://github.com/Sky24n/flustars)  
  1、SpUtil       : SharedPreferences 工具类.  
