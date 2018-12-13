@@ -6,6 +6,7 @@ import 'package:synchronized/synchronized.dart';
 /**
  * @Author: thl
  * @GitHub: https://github.com/Sky24n
+ * @Email: 863764940@qq.com
  * @Description: Sp Util.
  * @Date: 2018/9/8
  */

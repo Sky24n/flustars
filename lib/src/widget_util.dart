@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 /**
  * @Author: thl
  * @GitHub: https://github.com/Sky24n
+ * @Email: 863764940@qq.com
  * @Description: Widget Util.
  * @Date: 2018/9/10
  */

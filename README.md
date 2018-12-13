@@ -4,6 +4,21 @@
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR.  
 
 ## 更新说明  
+v0.1.5(2018.12.14)  
+ScreenUtil新增屏幕适配。
+```
+//配置设计稿尺寸 默认 360.0 / 640.0 / 3.0
+setDesignWHD(_designW,_designH,_designD);
+
+//返回根据屏幕宽适配后尺寸（单位 dp or pt）
+ScreenUtil.getInstance().getWidth(100.0);  
+
+//返回根据屏幕高适配后尺寸（单位 dp or pt）
+ScreenUtil.getInstance().getHeight(100.0);  
+
+//返回根据屏幕宽适配后字体尺寸
+ScreenUtil.getInstance().getSp(12.0);  
+```
 v0.1.4(2018.11.22)  
 ScreenUtil不依赖context获取屏幕数据。  
 
@@ -16,7 +31,7 @@ ScreenUtil不依赖context获取屏幕数据。
 
 ### [flustars](https://github.com/Sky24n/flustars)  
  1、SpUtil       : SharedPreferences 工具类.  
- 2、ScreenUtil   : 获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
+ 2、ScreenUtil   : 屏幕适配，获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
  3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标.  
 
 ### [common_utils](https://github.com/Sky24n/common_utils)  
@@ -66,6 +81,11 @@ isInitialized
 
 * #### ScreenUtil
 ```
+getWidth                  : 返回根据屏幕宽适配后尺寸.
+getHeight                 : 返回根据屏幕高适配后尺寸.
+getWidthPx                : 返回根据屏幕宽适配后尺寸.
+getHeightPx               : 返回根据屏幕高适配后尺寸.
+getSp                     : 返回根据屏幕宽适配后字体尺寸.
 screenWidth               : 获取屏幕宽.
 screenHeight              : 获取屏幕高.
 screenDensity             : 获取屏幕密度.
