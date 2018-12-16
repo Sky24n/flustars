@@ -43,6 +43,10 @@ class ScreenUtil {
     return _singleton;
   }
 
+  factory ScreenUtil() {
+    return _singleton;
+  }
+
   ScreenUtil._init() {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     _mediaQueryData = mediaQuery;
