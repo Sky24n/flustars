@@ -4,6 +4,7 @@ import 'dart:ui' as ui show window;
 /**
  * @Author: thl
  * @GitHub: https://github.com/Sky24n
+ * @JianShu: https://www.jianshu.com/u/cbf2ad25d33a
  * @Email: 863764940@qq.com
  * @Description: Screen Util.
  * @Date: 2018/9/8
@@ -26,7 +27,7 @@ void setDesignWHD(double w, double h, {double density: 3.0}) {
   _designD = density;
 }
 
-///
+/// Screen Util.
 class ScreenUtil {
   double _screenWidth;
   double _screenHeight;

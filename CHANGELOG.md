@@ -1,3 +1,7 @@
+## 0.1.6
+
+* TODO: Dio Util, print http log, singleton mode.
+
 ## 0.1.5
 
 * TODO: Screen adaptation，屏幕适配.

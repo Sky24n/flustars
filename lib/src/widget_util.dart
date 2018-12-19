@@ -3,22 +3,23 @@ import 'package:flutter/widgets.dart';
 /**
  * @Author: thl
  * @GitHub: https://github.com/Sky24n
+ * @JianShu: https://www.jianshu.com/u/cbf2ad25d33a
  * @Email: 863764940@qq.com
  * @Description: Widget Util.
  * @Date: 2018/9/10
  */
 
-///
+/// Widget Util.
 class WidgetUtil {
   bool _hasMeasured = false;
   double _width;
   double _height;
 
   /// Widget rendering listener.
-  /// Widget渲染监听
-  /// context: Widget context
+  /// Widget渲染监听.
+  /// context: Widget context.
   /// isOnce: true,Continuous monitoring  false,Listen only once.
-  /// onCallBack: Widget Rect CallBack
+  /// onCallBack: Widget Rect CallBack.
   void asyncPrepare(
       BuildContext context, bool isOnce, ValueChanged<Rect> onCallBack) {
     if (_hasMeasured) return;
@@ -34,6 +35,15 @@ class WidgetUtil {
           if (onCallBack != null) onCallBack(box.semanticBounds);
         }
       }
+    });
+  }
+
+  /// Widget渲染监听.
+  void asyncPrepares(bool isOnce, ValueChanged<Rect> onCallBack) {
+    if (_hasMeasured) return;
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) {
+      if (isOnce) _hasMeasured = true;
+      if (onCallBack != null) onCallBack(null);
     });
   }
 

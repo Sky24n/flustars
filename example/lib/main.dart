@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,13 +63,37 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
+  WidgetUtil widgetUtil = new WidgetUtil();
+
+  @override
+  void initState() {
+    super.initState();
+
+    DioUtil.openDebug(); //打开debug模式
+
+    Options options = DioUtil.getDefOptions();
+    options.baseUrl = "http://www.wanandroid.com/";
+    HttpConfig config = new HttpConfig(options: options);
+    DioUtil().setConfig(config);
+
+    DioUtil()
+        .request<List>(Method.get, "banner/json")
+        .then((BaseResp<List> resp) {
+      print("BaseResp: " + resp.toString());
+    });
+
+    widgetUtil.asyncPrepares(true, (_) {
+      print("Widget 渲染完成...");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    double width = ScreenUtil.getInstance().screenWidth;
-    double height = ScreenUtil.getInstance().screenHeight;
+    double width = ScreenUtil().screenWidth;
+    double height = ScreenUtil().screenHeight;
     double density = ScreenUtil.getInstance().screenDensity;
     double tempW = ScreenUtil.getInstance().getWidth(360.0);
-    double tempH = ScreenUtil.getInstance().getHeight(360.0);
+    double tempH = ScreenUtil().getHeight(360.0);
 
     print(
         "width: $width, height: $height, density: $density, tempW: $tempW, tempH: $tempH");
