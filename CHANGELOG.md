@@ -1,3 +1,7 @@
+## 0.1.7
+
+* TODO: Dio v1.0.12.
+
 ## 0.1.6
 
 * TODO: Dio Util, print http log, singleton mode.
