@@ -9,6 +9,12 @@ v0.1.6(2018.12.20)
 ```
 // 打开debug模式.
 DioUtil.openDebug(); 
+
+// 配置网络参数.
+Options options = DioUtil.getDefOptions();
+options.baseUrl = "http://www.wanandroid.com/";
+HttpConfig config = new HttpConfig(options: options);
+DioUtil().setConfig(config);
   
 // 两种单例请求方式.
 DioUtil().request<List>(Method.get, "banner/json");
