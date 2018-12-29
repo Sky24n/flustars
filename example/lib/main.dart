@@ -62,7 +62,7 @@ class MainPage extends StatefulWidget {
   }
 }
 
-class _MainPageState extends State<MainPage> {
+class MainPageState extends State<MainPage> {
   WidgetUtil widgetUtil = new WidgetUtil();
 
   @override
@@ -89,7 +89,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    // 如果使用ScreenUtil.getInstance() 需要MainPageState build 调用MediaQuery.of(context)
+    // 如果使用ScreenUtil.getInstance()
+    // 需要MainPageState build 调用MediaQuery.of(context)
     MediaQuery.of(context);
 
     double width = ScreenUtil.getInstance().screenWidth;
@@ -194,19 +195,6 @@ class TestPageState extends State<TestPage> {
 
     return new Scaffold(
       body: new AppBar(),
-    );
-  }
-}
-
-class MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    // 在 MainPageState build 调用 MediaQuery.of(context)
-    MediaQuery.of(context);
-    double width = ScreenUtil.getInstance().screenWidth;
-    double height = ScreenUtil.getInstance().screenHeight;
-    return new Scaffold(
-      appBar: new AppBar(),
     );
   }
 }
