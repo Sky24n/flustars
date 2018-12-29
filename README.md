@@ -6,7 +6,7 @@
 ## 更新说明
 v0.1.8(2018.12.29)   
 ScreenUtil 屏幕适配更新。  
-一、不依赖context
+方案一、不依赖context
 ```
 步骤 1
 //如果设计稿尺寸默认配置一致，无需该设置。  配置设计稿尺寸 默认 360.0 / 640.0 / 3.0
@@ -43,7 +43,7 @@ ScreenUtil.getInstance().getHeightPx(sizePx); //sizePx 单位px
 ScreenUtil.getInstance().getSp(fontSize); //返回根据屏幕宽适配后字体尺寸
 
 ```
-二、依赖context
+方案二、依赖context
 ```
 ScreenUtil.getScreenW(context); //屏幕 宽
 ScreenUtil.getScreenH(context); //屏幕 高
