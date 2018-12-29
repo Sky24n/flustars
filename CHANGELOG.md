@@ -1,6 +1,6 @@
 ## 0.1.8
 
-* TODO: fix ScreenUtil bug, Dio v1.0.12.
+* TODO: fix ScreenUtil bug, Dio v1.0.13.
 
 ## 0.1.7
 
