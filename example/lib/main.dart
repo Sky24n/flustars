@@ -89,14 +89,19 @@ class MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = ScreenUtil().screenWidth;
-    double height = ScreenUtil().screenHeight;
+    // 如果使用ScreenUtil.getInstance() 需要MainPageState build 调用MediaQuery.of(context)
+    MediaQuery.of(context);
+
+    double width = ScreenUtil.getInstance().screenWidth;
+    double height = ScreenUtil.getInstance().screenHeight;
     double density = ScreenUtil.getInstance().screenDensity;
     double tempW = ScreenUtil.getInstance().getWidth(360.0);
-    double tempH = ScreenUtil().getHeight(360.0);
+    double tempH = ScreenUtil.getInstance().getHeight(360.0);
+    double textScaleFactor =
+        ScreenUtil.getInstance().mediaQueryData.textScaleFactor;
 
     print(
-        "width: $width, height: $height, density: $density, tempW: $tempW, tempH: $tempH");
+        "width: $width, height: $height, density: $density, tempW: $tempW, tempH: $tempH, textScaleFactor: $textScaleFactor");
     double _width = width * density;
     double _height = height * density;
     double __tempW = ScreenUtil.getInstance().getWidthPx(90.0);
