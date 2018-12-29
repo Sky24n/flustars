@@ -4,6 +4,58 @@
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR.  
 
 ## 更新说明
+v0.1.6(2018.12.29) 
+ScreenUtil 屏幕适配更新。
+一、不依赖context
+```
+步骤 1
+//如果设计稿尺寸默认配置一致，无需该设置。  配置设计稿尺寸 默认 360.0 / 640.0 / 3.0
+setDesignWHD(_designW,_designH,_designD);  
+  
+步骤 2
+// 在MainPageState build 调用MediaQuery.of(context)
+class MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+  
+    // 在 MainPageState build 调用 MediaQuery.of(context)
+    MediaQuery.of(context);
+    
+    double width = ScreenUtil.getInstance().screenWidth;
+    double height = ScreenUtil.getInstance().screenHeight;
+    return new Scaffold(
+      appBar: new AppBar(),
+    );
+  }
+}  
+  
+步骤 3
+ScreenUtil.getInstance().screenWidth
+ScreenUtil.getInstance().screenHeight
+ScreenUtil.getInstance().screenDensity
+ScreenUtil.getInstance().statusBarHeight
+ScreenUtil.getInstance().bottomBarHeight
+//屏幕适配相关  
+ScreenUtil.getInstance().getWidth(size); //返回根据屏幕宽适配后尺寸（单位 dp or pt）
+ScreenUtil.getInstance().getHeight(size); //返回根据屏幕高适配后尺寸 （单位 dp or pt）
+ScreenUtil.getInstance().getWidthPx(sizePx); //sizePx 单位px
+ScreenUtil.getInstance().getHeightPx(sizePx); //sizePx 单位px
+ScreenUtil.getInstance().getSp(fontSize); //返回根据屏幕宽适配后字体尺寸
+
+```
+二、依赖context
+```
+ScreenUtil.getScreenW(context); //屏幕 宽
+ScreenUtil.getScreenH(context); //屏幕 高
+ScreenUtil.getScreenDensity(context); //屏幕 像素密度
+ScreenUtil.getStatusBarH(context); //状态栏高度
+ScreenUtil.getBottomBarH(context); //bottombar 高度
+//屏幕适配相关  
+ScreenUtil.getScaleW(context, size); //返回根据屏幕宽适配后尺寸（单位 dp or pt）
+ScreenUtil.getScaleH(context, size); //返回根据屏幕高适配后尺寸 （单位 dp or pt）
+ScreenUtil.getScaleSp(context, size) ;//返回根据屏幕宽适配后字体尺寸
+```
+
 v0.1.6(2018.12.20)  
 新增网络请求工具DioUtil, 单例模式，可输出请求日志。详细请求+解析请参考[flutter_wanandroid][flutter_wanandroid_github]项目。
 ```
@@ -47,15 +99,12 @@ setDesignWHD(_designW,_designH,_designD);
 
 //返回根据屏幕宽适配后尺寸（单位 dp or pt）
 ScreenUtil.getInstance().getWidth(100.0);  
-ScreenUtil().getWidth(100.0); 
 
 //返回根据屏幕高适配后尺寸（单位 dp or pt）
 ScreenUtil.getInstance().getHeight(100.0); 
-ScreenUtil().getHeight(100.0);  
 
 //返回根据屏幕宽适配后字体尺寸
 ScreenUtil.getInstance().getSp(12.0); 
-ScreenUtil().getSp(100.0);   
 ```
 v0.1.4(2018.11.22)  
 ScreenUtil不依赖context获取屏幕数据。  
@@ -144,9 +193,13 @@ screenHeight              : 获取屏幕高.
 screenDensity             : 获取屏幕密度.
 appBarHeight              : 获取系统AppBar高度.
 statusBarHeight           : 获取系统状态栏高度.
-getScreenWidth            : 获取当前屏幕宽.
-getScreenHeight           : 获取当前屏幕高.
-getOrientation            : 获取当前屏幕方向.
+getScreenW(ctx)           : 当前屏幕 宽.
+getScreenH(ctx)           : 当前屏幕 高.
+getStatusBarH(ctx)        : 当前状态栏高度.
+getBottomBarH(ctx)        : 当前BottomBar高度.
+getScaleW(ctx,size)       : 返回根据屏幕宽适配后尺寸.
+getScaleH(ctx,size)       : 返回根据屏幕高适配后尺寸.
+getScaleSp(ctx,size)      : 返回根据屏幕宽适配后字体尺寸.
 ```
 
 * #### WidgetUtil

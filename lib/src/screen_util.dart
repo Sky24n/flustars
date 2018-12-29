@@ -93,8 +93,8 @@ class ScreenUtil {
     return mediaQuery.size.width;
   }
 
-  /// screen width
-  /// 当前屏幕 宽
+  /// screen height
+  /// 当前屏幕 高
   static double getScreenH(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
     return mediaQuery.size.width;
@@ -115,7 +115,7 @@ class ScreenUtil {
   }
 
   /// status bar Height
-  /// 当前状态栏高度
+  /// 当前BottomBar高度
   static double getBottomBarH(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
     return mediaQuery.padding.bottom;
