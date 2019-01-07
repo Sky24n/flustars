@@ -15,10 +15,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    test();
+    _initAsync();
   }
 
-  void test() async {
+  void _initAsync() async {
     print("SpUtil: " + SpUtil.isInitialized().toString());
     SpUtil spUtil = await SpUtil.getInstance();
     //SpUtil.remove("username");
