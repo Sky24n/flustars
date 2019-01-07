@@ -4,6 +4,9 @@
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR.  
 
 ## 更新说明
+#### v0.1.9(2019.01.07)   
+移除DioUtil，如有需要，请到[flutter_wanandroid][flutter_wanandroid_github]该项目中copy。
+
 #### v0.1.8(2018.12.29)   
 ScreenUtil 屏幕适配更新。  
 方案一、不依赖context
@@ -120,10 +123,9 @@ ScreenUtil不依赖context获取屏幕数据。
 完整项目[flutter_wanandroid][flutter_wanandroid_github]，包含启动页，引导页，主题色切换，应用国际化多语言，版本更新等功能。欢迎体验！  
 
 ### [Flutter工具类库 flustars][flustars_github]   
- 1、DioUtil      : Dio 工具类.   
- 2、SpUtil       : 单例"同步" SharedPreferences 工具类.  
- 3、ScreenUtil   : 屏幕适配，获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
- 4、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标.  
+ 1、SpUtil       : 单例"同步" SharedPreferences 工具类.  
+ 2、ScreenUtil   : 屏幕适配，获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
+ 3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标.  
 
 ### [Dart常用工具类库 common_utils][common_utils_github]  
  1、TimelineUtil : 时间轴.(新)  
@@ -153,18 +155,6 @@ ScreenUtil不依赖context获取屏幕数据。
 dependencies:
   flustars: x.x.x  #latest version
 ```
-* #### DioUtil
-```
-openDebug()
-setConfig(config)
-request<T>(method, path, {data, options, cancelToken})
-requestR<T>(method, path, {data, options, cancelToken})
-download(urlPath,savePath, {...})
-getDio()
-getDefOptions()
-createNewDio()
-```
-
 * #### SpUtil
 ```
 getString

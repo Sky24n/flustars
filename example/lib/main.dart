@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,20 +67,6 @@ class MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-
-    DioUtil.openDebug(); //打开debug模式
-
-    Options options = DioUtil.getDefOptions();
-    options.baseUrl = "http://www.wanandroid.com/";
-    HttpConfig config = new HttpConfig(options: options);
-    DioUtil().setConfig(config);
-
-    DioUtil()
-        .request<List>(Method.get, "banner/json")
-        .then((BaseResp<List> resp) {
-      print("BaseResp: " + resp.toString());
-    });
-
     widgetUtil.asyncPrepares(true, (_) {
       print("Widget 渲染完成...");
     });
