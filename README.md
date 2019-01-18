@@ -247,8 +247,8 @@ double dx = offset.dy
 
 ```
 
-## 作者简书，欢迎关注～
- [![jianshu][jianshuSvg]][jianshu]
+## 关于作者，欢迎关注～
+ [![jianshu][jianshuSvg]][jianshu]   [![juejin][juejinSvg]][juejin] 
 
 
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
@@ -263,6 +263,9 @@ double dx = offset.dy
 
 [flustars_github]: https://github.com/Sky24n/flustars
 
-[jianshuSvg]: https://img.shields.io/badge/简书-@Sky24n-34a48e.svg
+[jianshuSvg]: https://img.shields.io/badge/简书-@Sky24n-536dfe.svg
 [jianshu]: https://www.jianshu.com/u/cbf2ad25d33a
+
+[juejinSvg]: https://img.shields.io/badge/掘金-@Sky24n-536dfe.svg
+[juejin]: https://juejin.im/user/5b9e8a92e51d453df0440422
 
