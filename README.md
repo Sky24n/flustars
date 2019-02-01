@@ -1,7 +1,16 @@
 # flustars(Flutter常用工具类库)
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
-## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR.  
+## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
+ 
+### 关于使用本开源库
+如果您是用于公司项目，请随意使用～  
+如果您是用于开源项目，未经本人许可，请勿copy源码到您的项目使用！  
+使用方式：
+```yaml
+dependencies:
+  flustars: 0.1.9
+```
 
 ## 更新说明
 #### v0.1.9(2019.01.07)   
@@ -250,12 +259,7 @@ double dx = offset.dy
 ## 关于作者，欢迎关注～
  [![jianshu][jianshuSvg]][jianshu]   [![juejin][juejinSvg]][juejin] 
  
-### 关于使用本开源库
-如果您是用于公司项目，请随意使用～  
-如果您是用于开源项目，希望您能直接使用本库(flustars: ^0.1.9)，不要直接copy出去啦，顺便帮作者推荐一下，不胜感激～
-
-### 最后，如果您觉得本项目不错的话，来个star支持下作者吧！
- 
+### 最后，如果您觉得本项目不错的话，来个star支持下作者吧！ 
 
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
 [flutter_wanandroid_apk]: https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk
