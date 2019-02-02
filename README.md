@@ -3,7 +3,7 @@
 
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
 
-## [更新说明](../docs/UPDATELOG.md)
+## [更新说明](./docs/UPDATELOG.md)
  
 ### 关于使用本开源库
 如果您是用于公司项目，请随意使用～  
@@ -31,7 +31,7 @@ dependencies:
  8、ObjectUtil   : 判断对象是否为空(String List Map),判断两个List是否相等. 
 
 ### APIs
-* #### SpUtil -> [Example]()
+* #### SpUtil -> [Example](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/ui/pages/demos/sp_util_page.dart)
 ```
 getString
 putString
@@ -50,7 +50,7 @@ clear
 isInitialized
 ```
 
-* #### ScreenUtil -> [Example]() 
+* #### ScreenUtil -> [Example](./example/lib/main.dart) 
 ```
 getWidth                  : 返回根据屏幕宽适配后尺寸.
 getHeight                 : 返回根据屏幕高适配后尺寸.
@@ -69,9 +69,52 @@ getBottomBarH(ctx)        : 当前BottomBar高度.
 getScaleW(ctx,size)       : 返回根据屏幕宽适配后尺寸.
 getScaleH(ctx,size)       : 返回根据屏幕高适配后尺寸.
 getScaleSp(ctx,size)      : 返回根据屏幕宽适配后字体尺寸.
+
+// 屏幕宽
+double screenWidth = ScreenUtil.getInstance().screenWidth;
+// 屏幕高
+double screenHeight = ScreenUtil.getInstance().screenHeight;
+// 屏幕像素密度
+double screenDensity = ScreenUtil.getInstance().screenDensity;
+// 系统状态栏高度
+double statusBarHeight = ScreenUtil.getInstance().statusBarHeight;
+// BottomBar高度 
+double bottomBarHeight = ScreenUtil.getInstance().bottomBarHeight;
+// 系统AppBar高度
+double appBarHeight = ScreenUtil.getInstance().appBarHeight;
+// 根据屏幕宽适配后尺寸
+double adapterW100 = ScreenUtil.getInstance().getWidth(100);
+// 根据屏幕高适配后尺寸
+double adapterH100 = ScreenUtil.getInstance().getHeight(100);
+// 根据屏幕宽适配后字体尺寸
+double adapterSp100 = ScreenUtil.getInstance().getSp(100);
+// 根据屏幕宽适配后尺寸(输入px)
+double adapterW100px = ScreenUtil.getInstance().getWidthPx(300);
+// 根据屏幕高适配后尺寸(输入px)
+double adapterH100px = ScreenUtil.getInstance().getHeightPx(300);
+
+// 屏幕宽
+double screenWidth = ScreenUtil.getScreenW(context);
+// 屏幕高
+double screenHeight = ScreenUtil.getScreenH(context);
+// 屏幕像素密度
+double screenDensity = ScreenUtil.getScreenDensity(context);
+// 系统状态栏高度
+double statusBarHeight = ScreenUtil.getStatusBarH(context);
+// BottomBar高度
+double bottomBarHeight = ScreenUtil.getBottomBarH(context);
+// 根据屏幕宽适配后尺寸
+double adapterW100 = ScreenUtil.getScaleW(context, 100);
+// 根据屏幕高适配后尺寸
+double adapterH100 = ScreenUtil.getScaleH(context, 100);
+// 根据屏幕宽适配后字体尺寸
+double adapterSp100 = ScreenUtil.getScaleSp(context, 100);
+// 屏幕方向
+Orientation orientation = ScreenUtil.getOrientation(context);
+
 ```
 
-* #### WidgetUtil -> [Example]()
+* #### WidgetUtil -> [Example](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/ui/pages/demos/widget_util_page.dart)
 ```
 asyncPrepare              : Widget渲染监听，监听widget宽高变化,callback返回宽高等参数.
 getWidgetBounds           : 获取widget 宽高.
