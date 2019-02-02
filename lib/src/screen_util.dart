@@ -97,7 +97,7 @@ class ScreenUtil {
   /// 当前屏幕 高
   static double getScreenH(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-    return mediaQuery.size.width;
+    return mediaQuery.size.height;
   }
 
   /// screen density

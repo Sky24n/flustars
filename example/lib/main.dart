@@ -10,24 +10,26 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _userName = '';
-
   @override
   void initState() {
     super.initState();
+
+    /// 配置设计稿尺寸
+    /// 如果设计稿尺寸默认配置一致，无需该设置。默认 width:360.0 / height:640.0 / density:3.0
+    setDesignWHD(360.0, 640, density: 3);
+
     _initAsync();
   }
 
   void _initAsync() async {
     print("SpUtil: " + SpUtil.isInitialized().toString());
-    SpUtil spUtil = await SpUtil.getInstance();
-    //SpUtil.remove("username");
+    await SpUtil.getInstance();
     print("SpUtil: " + SpUtil.isInitialized().toString());
     SpUtil.putString("username", "sky24");
     print("username: " + SpUtil.getString("username").toString());
     if (!mounted) return;
     setState(() {
-      _userName = SpUtil.getString("username");
+      String _userName = SpUtil.getString("username");
     });
   }
 
@@ -36,21 +38,6 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       home: new MainPage(),
     );
-
-//    return new MaterialApp(
-//      home: new Scaffold(
-//        appBar: new AppBar(
-//          title: const Text('Plugin example app'),
-//        ),
-//        body: new Center(
-//          child: new Text('username: $_userName'),
-//        ),
-//        floatingActionButton: new FloatingActionButton(onPressed: () {
-//          Navigator.push(
-//              context, new CupertinoPageRoute(builder: (ctx) => TestPage()));
-//        }),
-//      ),
-//    );
   }
 }
 
@@ -62,21 +49,16 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  WidgetUtil widgetUtil = new WidgetUtil();
-
   @override
   void initState() {
     super.initState();
-    widgetUtil.asyncPrepares(true, (_) {
-      print("Widget 渲染完成...");
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     // 如果使用ScreenUtil.getInstance()
     // 需要MainPageState build 调用MediaQuery.of(context)
-    MediaQuery.of(context);
+//    MediaQuery.of(context);
 
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
@@ -95,7 +77,20 @@ class MainPageState extends State<MainPage> {
         "_width: $_width, height: $_height, __tempW: $__tempW, tempW: $tempW, tempH: $tempH");
 
     return new Scaffold(
-      appBar: new AppBar(),
+      // 一个不需要GlobalKey就可以openDrawer的AppBar
+      appBar: new MyAppBar(
+        leading: ClipOval(
+          child: new Image.asset(('assets/images/ali_connors.png')),
+        ),
+        title: const Text('Flustars Demos'),
+        centerTitle: true,
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.search),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -158,6 +153,14 @@ class MainPageState extends State<MainPage> {
             ),
           ),
         ],
+      ),
+      drawer: new Container(
+        color: Colors.white,
+        width: ScreenUtil.getInstance().getWidth(100),
+        height: double.infinity,
+        child: new SizedBox(
+          width: ScreenUtil.getInstance().getWidth(100),
+        ),
       ),
     );
   }
