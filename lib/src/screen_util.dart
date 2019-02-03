@@ -35,7 +35,7 @@ class ScreenUtil {
   double _statusBarHeight = 0.0;
   double _bottomBarHeight = 0.0;
   double _appBarHeight = 0.0;
-  double _textScaleFactor = 0.0;
+  double _textScaleFactor = 1.0;
   MediaQueryData _mediaQueryData;
 
   static final ScreenUtil _singleton = ScreenUtil();
@@ -44,7 +44,6 @@ class ScreenUtil {
     _singleton._init();
     return _singleton;
   }
-
 
   _init() {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
@@ -127,6 +126,7 @@ class ScreenUtil {
     return mediaQuery;
   }
 
+  /// returns the size after adaptation according to the screen width.(unit dp or pt)
   /// 返回根据屏幕宽适配后尺寸（单位 dp or pt）
   /// size 单位 dp or pt
   static double getScaleW(BuildContext context, double size) {
@@ -134,22 +134,25 @@ class ScreenUtil {
     return size * getScreenW(context) / _designW;
   }
 
+  /// returns the size after adaptation according to the screen height.(unit dp or pt)
   /// 返回根据屏幕高适配后尺寸 （单位 dp or pt）
-  /// size 单位 dp or pt
+  /// size unit dp or pt
   static double getScaleH(BuildContext context, double size) {
     if (context == null || getScreenH(context) == 0.0) return size;
     return size * getScreenH(context) / _designH;
   }
 
-  /// 返回根据屏幕宽适配后字体尺寸
+  /// returns the font size after adaptation according to the screen density.
+  /// 返回根据屏幕Density适配后字体尺寸
   /// fontSize 字体尺寸
-  /// sySystem 是否跟随系统字体大小设置，默认 true。
+  /// sySystem 是否跟随系统字体大小设置，默认 true。Whether to follow the system font size settings, default true.
   static double getScaleSp(BuildContext context, double fontSize,
       {bool sySystem: true}) {
-    if (context == null || getScreenW(context) == 0.0) return fontSize;
-    return (sySystem ? MediaQuery
-        .of(context)
-        .textScaleFactor : 1.0) * fontSize * getScreenW(context) / _designW;
+    if (context == null || getScreenDensity(context) == 0.0) return fontSize;
+    return (sySystem ? MediaQuery.of(context).textScaleFactor : 1.0) *
+        fontSize *
+        getScreenDensity(context) /
+        _designD;
   }
 
   /// Orientation
@@ -159,40 +162,47 @@ class ScreenUtil {
     return mediaQuery.orientation;
   }
 
+  /// returns the size after adaptation according to the screen width.(unit dp or pt)
   /// 返回根据屏幕宽适配后尺寸（单位 dp or pt）
   /// size 单位 dp or pt
   double getWidth(double size) {
     return _screenWidth == 0.0 ? size : (size * _screenWidth / _designW);
   }
 
-  /// 返回根据屏幕高适配后尺寸 （单位 dp or pt）
-  /// size 单位 dp or pt
+  /// returns the size after adaptation according to the screen height.(unit dp or pt)
+  /// 返回根据屏幕高适配后尺寸（单位 dp or pt）
+  /// size unit dp or pt
   double getHeight(double size) {
     return _screenHeight == 0.0 ? size : (size * _screenHeight / _designH);
   }
 
+  /// returns the size after adaptation according to the screen width.(unit dp or pt)
   /// 返回根据屏幕宽适配后尺寸（单位 dp or pt）
-  /// sizePx 单位px
+  /// sizePx unit px
   double getWidthPx(double sizePx) {
-    return _screenWidth == 0.0 ? (sizePx / _designD) :
-    (sizePx * _screenWidth / (_designW * _designD));
+    return _screenWidth == 0.0
+        ? (sizePx / _designD)
+        : (sizePx * _screenWidth / (_designW * _designD));
   }
 
+  /// returns the size after adaptation according to the screen height.(unit dp or pt)
   /// 返回根据屏幕高适配后尺寸（单位 dp or pt）
-  /// sizePx 单位px
+  /// sizePx unit px
   double getHeightPx(double sizePx) {
-    return _screenHeight == 0.0 ? (sizePx / _designD) :
-    (sizePx * _screenHeight / (_designH * _designD));
+    return _screenHeight == 0.0
+        ? (sizePx / _designD)
+        : (sizePx * _screenHeight / (_designH * _designD));
   }
 
-  /// 返回根据屏幕宽适配后字体尺寸
+  /// returns the font size after adaptation according to the screen density.
+  /// 返回根据屏幕Density适配后字体尺寸
   /// fontSize 字体尺寸
-  /// sySystem 是否跟随系统字体大小设置，默认 true。
+  /// sySystem 是否跟随系统字体大小设置，默认 true。Whether to follow the system font size settings, default true.
   double getSp(double fontSize, {bool sySystem: true}) {
-    if (_screenWidth == 0.0) return fontSize;
+    if (_screenDensity == 0.0) return fontSize;
     return (sySystem ? _textScaleFactor : 1.0) *
         fontSize *
-        _screenWidth /
-        _designW;
+        _screenDensity /
+        _designD;
   }
 }

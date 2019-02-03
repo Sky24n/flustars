@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     /// 如果设计稿尺寸默认配置一致，无需该设置。默认 width:360.0 / height:640.0 / density:3.0
     /// Configuration design draft size.
     /// If the default configuration of design draft size is the same, this setting is not required. default width:360.0 / height:640.0 / density:3.0
-    setDesignWHD(360.0, 640, density: 3);
+    setDesignWHD(360.0, 640.0, density: 3);
   }
 
   @override

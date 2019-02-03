@@ -80,6 +80,7 @@ class SpUtil {
   }
 
   static List<String> getStringList(String key) {
+    if (_prefs == null) return null;
     return _prefs.getStringList(key);
   }
 

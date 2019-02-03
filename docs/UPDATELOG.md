@@ -111,3 +111,6 @@ v0.1.4(2018.11.22)
 ScreenUtil不依赖context获取屏幕数据。  
 
 新增MyAppBar,不需要GlobalKey就能openDrawer。  
+
+
+[flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid

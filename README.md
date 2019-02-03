@@ -12,7 +12,7 @@
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: 0.1.9
+  flustars: 0.2.0
 ```
 
 ### [Flutter工具类库 flustars][flustars_github]   
@@ -29,6 +29,12 @@ dependencies:
  6、RegexUtil    : 正则验证手机号，身份证，邮箱等等.  
  7、NumUtil      : 保留x位小数, 精确加、减、乘、除, 防止精度丢失.  
  8、ObjectUtil   : 判断对象是否为空(String List Map),判断两个List是否相等. 
+
+### Add dependency
+```yaml
+dependencies:
+  flustars: x.x.x  #latest version
+```
 
 ### APIs
 * #### SpUtil -> [Example](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/ui/pages/demos/sp_util_page.dart)
