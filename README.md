@@ -12,7 +12,7 @@
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: 0.2.0
+  flustars: 0.2.1
 ```
 
 ### [Flutter工具类库 flustars][flustars_github]   

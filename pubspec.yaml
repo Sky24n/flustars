@@ -1,6 +1,6 @@
 name: flustars
 description: Flutter common utils library. ScreenUtil, SpUtil, WidgetUtil.
-version: 0.2.0
+version: 0.2.1
 author: thl <863764940@qq.com>
 homepage: https://github.com/Sky24n/flustars
 
@@ -14,7 +14,7 @@ dependencies:
   # https://github.com/tekartik/synchronized.dart
   synchronized: ^1.5.3
   # https://github.com/flutter/plugins/tree/master/packages/shared_preferences
-  shared_preferences: ^0.4.3
+  shared_preferences: ^0.5.0
 
 
 # For information on the generic Dart part of this file, see the

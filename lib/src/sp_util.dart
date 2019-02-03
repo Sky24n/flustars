@@ -39,9 +39,9 @@ class SpUtil {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  static String getString(String key) {
-    if (_prefs == null) return null;
-    return _prefs.getString(key);
+  static String getString(String key, {String defValue: ''}) {
+    if (_prefs == null) return defValue;
+    return _prefs.getString(key) ?? defValue;
   }
 
   static Future<bool> putString(String key, String value) {
@@ -49,9 +49,9 @@ class SpUtil {
     return _prefs.setString(key, value);
   }
 
-  static bool getBool(String key) {
-    if (_prefs == null) return null;
-    return _prefs.getBool(key);
+  static bool getBool(String key, {bool defValue: false}) {
+    if (_prefs == null) return defValue;
+    return _prefs.getBool(key) ?? defValue;
   }
 
   static Future<bool> putBool(String key, bool value) {
@@ -59,9 +59,9 @@ class SpUtil {
     return _prefs.setBool(key, value);
   }
 
-  static int getInt(String key) {
-    if (_prefs == null) return null;
-    return _prefs.getInt(key);
+  static int getInt(String key, {int defValue: 0}) {
+    if (_prefs == null) return defValue;
+    return _prefs.getInt(key) ?? defValue;
   }
 
   static Future<bool> putInt(String key, int value) {
@@ -69,9 +69,9 @@ class SpUtil {
     return _prefs.setInt(key, value);
   }
 
-  static double getDouble(String key) {
-    if (_prefs == null) return null;
-    return _prefs.getDouble(key);
+  static double getDouble(String key, {double defValue: 0.0}) {
+    if (_prefs == null) return defValue;
+    return _prefs.getDouble(key) ?? defValue;
   }
 
   static Future<bool> putDouble(String key, double value) {
@@ -79,9 +79,10 @@ class SpUtil {
     return _prefs.setDouble(key, value);
   }
 
-  static List<String> getStringList(String key) {
-    if (_prefs == null) return null;
-    return _prefs.getStringList(key);
+  static List<String> getStringList(String key,
+      {List<String> defValue: const []}) {
+    if (_prefs == null) return defValue;
+    return _prefs.getStringList(key) ?? defValue;
   }
 
   static Future<bool> putStringList(String key, List<String> value) {
@@ -89,9 +90,9 @@ class SpUtil {
     return _prefs.setStringList(key, value);
   }
 
-  static dynamic getDynamic(String key) {
-    if (_prefs == null) return null;
-    return _prefs.get(key);
+  static dynamic getDynamic(String key, {Object defValue: null}) {
+    if (_prefs == null) return defValue;
+    return _prefs.get(key) ?? defValue;
   }
 
   static Set<String> getKeys() {
