@@ -4,6 +4,9 @@
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
 
 ## [更新说明](./doc/UPDATELOG.md)
+v0.2.1 SpUtil新增get默认值。  
+SpUtil.getString('key', defValue: '');    
+SpUtil.getInt('key', defValue: 0);
  
 ### 关于使用本开源库
 如果您是用于公司项目，请随意使用～  
