@@ -21,6 +21,9 @@ double _designD = 3.0;
  * h 高
  * density 像素密度
  */
+
+/// 配置设计稿尺寸 屏幕 宽，高，密度。
+/// Configuration design draft size  screen width, height, density.
 void setDesignWHD(double w, double h, {double density: 3.0}) {
   _designW = w;
   _designH = h;

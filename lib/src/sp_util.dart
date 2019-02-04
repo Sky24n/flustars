@@ -90,7 +90,7 @@ class SpUtil {
     return _prefs.setStringList(key, value);
   }
 
-  static dynamic getDynamic(String key, {Object defValue: null}) {
+  static dynamic getDynamic(String key, {Object defValue}) {
     if (_prefs == null) return defValue;
     return _prefs.get(key) ?? defValue;
   }
