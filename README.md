@@ -15,7 +15,7 @@ SpUtil.getInt('key', defValue: 0);
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: 0.2.1
+  flustars: 0.2.2
 ```
 
 ### [Flutter工具类库 flustars][flustars_github]   
