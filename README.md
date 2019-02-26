@@ -56,7 +56,7 @@ void _initAsync() async {
     List<City> list = new List();
     list.add(new City(name: "成都市"));
     list.add(new City(name: "北京市"));
-    SpUtil.putObjectList("loc_city_list", null);
+    SpUtil.putObjectList("loc_city_list", list);
 
     List<Map> dataList = SpUtil.getObjectList("loc_city_list");
     List<City> _cityList = dataList?.map((value) {
