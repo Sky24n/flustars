@@ -14,8 +14,10 @@ class City {
 
   City({this.name});
 
+  /// must.
   City.fromJson(Map<String, dynamic> json) : name = json['name'];
 
+  /// must.
   Map<String, dynamic> toJson() => {
         'name': name,
       };

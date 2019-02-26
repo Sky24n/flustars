@@ -16,7 +16,8 @@ dependencies:
 ## [更新说明](./doc/UPDATELOG.md)
 v0.2.3 (2019.02.26)  
 shared_preferences & synchronized 修改为动态依赖～  
-SpUtil 新增putObject，getObject，putObjectList，getObjectList。
+SpUtil 新增putObject，getObject，putObjectList，getObjectList。  
+Object 需要实现fromJson，toJson。
 ```
 class City {
   String name;
