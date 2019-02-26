@@ -1,3 +1,7 @@
+## 0.2.3
+
+* TODO: synchronized : any , shared_preferences : any , SpUtil add putObject，getObject，putObjectList，getObjectList。
+
 ## 0.2.2
 
 * TODO: SpUtil add get default value.

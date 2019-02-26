@@ -4,8 +4,8 @@ import 'dart:ui' as ui show window;
 /**
  * @Author: thl
  * @GitHub: https://github.com/Sky24n
- * @JianShu: https://www.jianshu.com/u/cbf2ad25d33a
  * @Email: 863764940@qq.com
+ * @Email: sky24no@gmail.com
  * @Description: Screen Util.
  * @Date: 2018/9/8
  */
@@ -38,7 +38,6 @@ class ScreenUtil {
   double _statusBarHeight = 0.0;
   double _bottomBarHeight = 0.0;
   double _appBarHeight = 0.0;
-  double _textScaleFactor = 1.0;
   MediaQueryData _mediaQueryData;
 
   static final ScreenUtil _singleton = ScreenUtil();
@@ -57,7 +56,6 @@ class ScreenUtil {
       _screenDensity = mediaQuery.devicePixelRatio;
       _statusBarHeight = mediaQuery.padding.top;
       _bottomBarHeight = mediaQuery.padding.bottom;
-      _textScaleFactor = mediaQuery.textScaleFactor;
       _appBarHeight = kToolbarHeight;
     }
   }
@@ -146,16 +144,11 @@ class ScreenUtil {
   }
 
   /// returns the font size after adaptation according to the screen density.
-  /// 返回根据屏幕Density适配后字体尺寸
+  /// 返回根据屏幕宽适配后字体尺寸
   /// fontSize 字体尺寸
-  /// sySystem 是否跟随系统字体大小设置，默认 true。Whether to follow the system font size settings, default true.
-  static double getScaleSp(BuildContext context, double fontSize,
-      {bool sySystem: true}) {
+  static double getScaleSp(BuildContext context, double fontSize) {
     if (context == null || getScreenDensity(context) == 0.0) return fontSize;
-    return (sySystem ? MediaQuery.of(context).textScaleFactor : 1.0) *
-        fontSize *
-        getScreenDensity(context) /
-        _designD;
+    return fontSize * getScreenW(context) / _designW;
   }
 
   /// Orientation
@@ -198,14 +191,10 @@ class ScreenUtil {
   }
 
   /// returns the font size after adaptation according to the screen density.
-  /// 返回根据屏幕Density适配后字体尺寸
+  /// 返回根据屏幕宽适配后字体尺寸
   /// fontSize 字体尺寸
-  /// sySystem 是否跟随系统字体大小设置，默认 true。Whether to follow the system font size settings, default true.
-  double getSp(double fontSize, {bool sySystem: true}) {
+  double getSp(double fontSize) {
     if (_screenDensity == 0.0) return fontSize;
-    return (sySystem ? _textScaleFactor : 1.0) *
-        fontSize *
-        _screenDensity /
-        _designD;
+    return fontSize * _screenWidth / _designW;
   }
 }

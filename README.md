@@ -3,11 +3,6 @@
 
 ## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
 
-## [更新说明](./doc/UPDATELOG.md)
-v0.2.2 SpUtil新增get默认值。  
-SpUtil.getString('key', defValue: '');    
-SpUtil.getInt('key', defValue: 0);
- 
 ### 关于使用本开源库
 如果您是用于公司项目，请随意使用～  
 如果您是用于开源项目，未经本人许可，请勿copy源码到您的项目使用！  
@@ -15,8 +10,68 @@ SpUtil.getInt('key', defValue: 0);
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: ^0.2.2
+  flustars: ^0.2.3
 ```
+
+## [更新说明](./doc/UPDATELOG.md)
+v0.2.3 (2019.02.26)  
+shared_preferences & synchronized 修改为动态依赖～  
+SpUtil 新增putObject，getObject，putObjectList，getObjectList。
+```
+class City {
+  String name;
+
+  City({this.name});
+
+  City.fromJson(Map<String, dynamic> json) : name = json['name'];
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+      };
+
+  @override
+  String toString() {
+    StringBuffer sb = new StringBuffer('{');
+    sb.write("\"name\":\"$name\"");
+    sb.write('}');
+    return sb.toString();
+  }
+}
+
+void _initAsync() async {
+    await SpUtil.getInstance();
+
+    /// save object example.
+    /// 存储实体对象示例。
+    City city = new City();
+    city.name = "成都市";
+    SpUtil.putObject("loc_city", city);
+
+    Map dataStr = SpUtil.getObject("loc_city");
+    City hisCity = dataStr == null ? null : City.fromJson(dataStr);
+    print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
+
+    /// save object list example.
+    /// 存储实体对象List示例。
+    List<City> list = new List();
+    list.add(new City(name: "成都市"));
+    list.add(new City(name: "北京市"));
+    SpUtil.putObjectList("loc_city_list", null);
+
+    List<Map> dataList = SpUtil.getObjectList("loc_city_list");
+    List<City> _cityList = dataList?.map((value) {
+      return City.fromJson(value);
+    })?.toList();
+
+    print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
+}
+    
+```
+
+v0.2.2 SpUtil新增get默认值。  
+SpUtil.getString('key', defValue: '');    
+SpUtil.getInt('key', defValue: 0);
+ 
 
 ### [Flutter工具类库 flustars][flustars_github]   
  1、SpUtil       : 单例"同步" SharedPreferences 工具类.  
@@ -42,6 +97,10 @@ dependencies:
 ### APIs
 * #### SpUtil -> [Example](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/ui/pages/demos/sp_util_page.dart)
 ```
+putObject
+getObject
+putObjectList
+getObjectList
 getString
 putString
 getBool
@@ -53,6 +112,7 @@ putDouble
 getStringList
 putStringList
 getDynamic
+haveKey
 getKeys
 remove
 clear
@@ -130,22 +190,24 @@ getWidgetBounds           : 获取widget 宽高.
 getWidgetLocalToGlobal    : 获取widget在屏幕上的坐标.
 ```
 
-## 关于作者，欢迎关注～
- [![jianshu][jianshuSvg]][jianshu]   [![juejin][juejinSvg]][juejin] 
- 
-## 最后，如果您觉得本项目不错的话，来个star支持下作者吧！ 
+### 关于作者
+GitHub : [Sky24n](https://github.com/Sky24n)  
+简书 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://github.com/Sky24n)  
+掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://github.com/Sky24n)  
+Pub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://pub.flutter-io.cn/packages?q=email%3A863764940%40qq.com)    
+Email &nbsp;&nbsp;: 863764940@qq.com  
+如果您觉得本项目不错的话，来个star支持下作者吧！ 
 
-## Demo Github :  
- [flutter_wanandroid][flutter_wanandroid_github] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [flutter_demos][flutter_demos_github]
-## 点击下载APK :  
- [v0.1.2][flutter_wanandroid_apk] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [v1.0.4][flutter_demos_apk]
+### Demo Github : [flutter_wanandroid][flutter_wanandroid_github] 
+## 点击下载APK : [v0.1.2][flutter_wanandroid_apk] 
 ## 扫码下载APK :
-  ![flutter_wanandroid][flutter_wanandroid_qr] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![flutter_demos][flutter_demos_qr]
+  ![flutter_wanandroid][flutter_wanandroid_qr] 
 
 ### Screenshot
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20181003-234414.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20181003-211011.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180930-012302.jpg" width="200">  
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180930-012431.jpg" width="200">  <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-231618.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180926-144840.png" width="200">  
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-224204.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-224146.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-224231.jpg" width="200">   
+
 
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
 [flutter_wanandroid_apk]: https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk

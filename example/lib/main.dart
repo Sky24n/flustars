@@ -9,16 +9,65 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => new _MyAppState();
 }
 
+class City {
+  String name;
+
+  City({this.name});
+
+  City.fromJson(Map<String, dynamic> json) : name = json['name'];
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+      };
+
+  @override
+  String toString() {
+    StringBuffer sb = new StringBuffer('{');
+    sb.write("\"name\":\"$name\"");
+    sb.write('}');
+    return sb.toString();
+  }
+}
+
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    _initAsync();
 
     /// 配置设计稿尺寸
     /// 如果设计稿尺寸默认配置一致，无需该设置。默认 width:360.0 / height:640.0 / density:3.0
     /// Configuration design draft size.
     /// If the default configuration of design draft size is the same, this setting is not required. default width:360.0 / height:640.0 / density:3.0
     setDesignWHD(360.0, 640.0, density: 3);
+  }
+
+  void _initAsync() async {
+    await SpUtil.getInstance();
+
+    /// save object example.
+    /// 存储实体对象示例。
+    City city = new City();
+    city.name = "成都市";
+    SpUtil.putObject("loc_city", city);
+
+    Map dataStr = SpUtil.getObject("loc_city");
+    City hisCity = dataStr == null ? null : City.fromJson(dataStr);
+    print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
+
+    /// save object list example.
+    /// 存储实体对象list示例。
+    List<City> list = new List();
+    list.add(new City(name: "成都市"));
+    list.add(new City(name: "北京市"));
+    SpUtil.putObjectList("loc_city_list", null);
+
+    List<Map> dataList = SpUtil.getObjectList("loc_city_list");
+    List<City> _cityList = dataList?.map((value) {
+      return City.fromJson(value);
+    })?.toList();
+
+    print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
   }
 
   @override
@@ -50,7 +99,11 @@ class MainPageState extends State<MainPage> {
     double statusBar = ScreenUtil.getInstance().statusBarHeight;
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
-    print("MainPage statusBar: $statusBar, width: $width, height: $height");
+    double density = ScreenUtil.getInstance().screenDensity;
+    double sp = ScreenUtil.getInstance().getSp(24);
+    double spc = ScreenUtil.getScaleSp(context, 24);
+    print(
+        "MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc");
 
     return new Scaffold(
       // 一个不需要GlobalKey就可以openDrawer的AppBar

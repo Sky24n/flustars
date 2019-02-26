@@ -1,4 +1,10 @@
 ## 更新说明
+
+#### v0.2.2(2019.02.04) 
+v0.2.2 SpUtil新增get默认值。  
+SpUtil.getString('key', defValue: '');    
+SpUtil.getInt('key', defValue: 0);
+
 #### v0.1.9(2019.01.07)   
 移除DioUtil，如有需要，请到[flutter_wanandroid][flutter_wanandroid_github]该项目中copy。
 
