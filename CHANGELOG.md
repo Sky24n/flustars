@@ -1,3 +1,7 @@
+### 0.2.4
+
+* TODO: synchronized : '>=0.1.0 <3.0.0' , shared_preferences : '>=0.1.1 <1.0.0' .
+
 ## 0.2.3
 
 * TODO: synchronized : any , shared_preferences : any , SpUtil add putObject，getObject，putObjectList，getObjectList。

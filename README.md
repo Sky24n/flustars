@@ -10,10 +10,14 @@
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: ^0.2.3
+  flustars: ^0.2.4
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
+v0.2.4 (2019.02.27)  
+synchronized: '>=0.1.0 <3.0.0'  
+hared_preferences: '>=0.1.1 <1.0.0'  
+
 v0.2.3 (2019.02.26)  
 shared_preferences & synchronized 修改为动态依赖～  
 SpUtil 新增putObject，getObject，putObjectList，getObjectList。  
