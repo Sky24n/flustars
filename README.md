@@ -255,15 +255,15 @@ Email &nbsp;&nbsp;: 863764940@qq.com
 如果您觉得本项目不错的话，来个star支持下作者吧！  
 
 作者其他开源项目  
-库 | 功能  
--------- | ---  
-**[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)**|**Flutter完整项目，WanAndroid客户端，BLoC，RxDart...**  
-**[GreenTravel](https://github.com/Sky24n/GreenTravel)**|**Flutter仿滴滴出行**  
-**[flustars](https://github.com/Sky24n/flustars)**|**Flutter常用工具类库，SpUtil, ScreenUtil,WidgetUtil. 也许是目前最好用的Sp工具类，也许是目前最好用的屏幕工具类。**  
-**[common_utils](https://github.com/Sky24n/common_utils)**|**Dart常用工具类库。包含日期，正则，倒计时，定时任务，时间轴等工具类。**  
-**[fluintl](https://github.com/Sky24n/fluintl)**|**Flutter国际化库，方便集成使用**  
-**[azlistview](https://github.com/flutterchina/azlistview)**|**Flutter城市列表，联系人列表，索引&悬停**  
-**[lpinyin](https://github.com/flutterchina/lpinyin)**|**Dart汉字转拼音库**  
+| 库 | 功能  
+| :------| ------: | :------: |
+| [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid) | Flutter完整项目，WanAndroid客户端，BLoC，RxDart... |   
+| [GreenTravel](https://github.com/Sky24n/GreenTravel) | Flutter仿滴滴出行 |  
+| [flustars](https://github.com/Sky24n/flustars) | Flutter常用工具类库，SpUtil, ScreenUtil,WidgetUtil. 也许是目前最好用的Sp工具类，也许是目前最好用的屏幕工具类。 |   
+| [common_utils](https://github.com/Sky24n/common_utils) | Dart常用工具类库。包含日期，正则，倒计时，定时任务，时间轴等工具类。 |   
+| [fluintl](https://github.com/Sky24n/fluintl) | Flutter国际化库，方便集成使用 |
+| [azlistview](https://github.com/flutterchina/azlistview) | Flutter城市列表，联系人列表，索引&悬停 |
+| [lpinyin](https://github.com/flutterchina/lpinyin) | Dart汉字转拼音库 |
 
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
 [flutter_wanandroid_apk]: https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk
