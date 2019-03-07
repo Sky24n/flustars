@@ -255,7 +255,7 @@ Email &nbsp;&nbsp;: 863764940@qq.com
 如果您觉得本项目不错的话，来个star支持下作者吧！  
 
 作者其他开源项目  
-| 库 | 功能  
+| 库 | 功能 |
 | :------| ------: | :------: |
 | [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid) | Flutter完整项目，WanAndroid客户端，BLoC，RxDart... |   
 | [GreenTravel](https://github.com/Sky24n/GreenTravel) | Flutter仿滴滴出行 |  
