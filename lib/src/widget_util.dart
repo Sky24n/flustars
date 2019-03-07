@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:flustars/src/utils.dart';
 import 'package:flutter/widgets.dart';
 
 /**
@@ -61,5 +63,58 @@ class WidgetUtil {
   static Offset getWidgetLocalToGlobal(BuildContext context) {
     RenderBox box = context.findRenderObject();
     return box == null ? Offset.zero : box.localToGlobal(Offset.zero);
+  }
+
+  /// get image width height，load error return Rect.zero.（unit px）
+  /// 获取图片宽高，加载错误情况返回 Rect.zero.（单位 px）
+  /// image
+  /// url network
+  /// local url , package
+  static Future<Rect> getImageWH(
+      {Image image, String url, String localUrl, String package}) {
+    if (Utils.isEmpty(image) && Utils.isEmpty(url) && Utils.isEmpty(localUrl)) {
+      return Future.value(Rect.zero);
+    }
+    Completer<Rect> completer = Completer<Rect>();
+    Image img = image != null
+        ? image
+        : ((url != null && url.isNotEmpty)
+            ? Image.network(url)
+            : Image.asset(localUrl, package: package));
+    img.image.resolve(new ImageConfiguration()).addListener(
+        (ImageInfo info, bool _) {
+      completer.complete(Rect.fromLTWH(
+          0, 0, info.image.width.toDouble(), info.image.height.toDouble()));
+    }, onError: (dynamic exception, StackTrace stackTrace) {
+      completer.complete(Rect.zero);
+    });
+    return completer.future;
+  }
+
+  /// get image width height, load error throw exception.（unit px）
+  /// 获取图片宽高，加载错误会抛出异常.（单位 px）
+  /// image
+  /// url network
+  /// local url (full path/全路径，example："assets/images/ali_connors.png"，""assets/images/3.0x/ali_connors.png"" );
+  /// package
+  static Future<Rect> getImageWHE(
+      {Image image, String url, String localUrl, String package}) {
+    if (Utils.isEmpty(image) && Utils.isEmpty(url) && Utils.isEmpty(localUrl)) {
+      return Future.error("image is null.");
+    }
+    Completer<Rect> completer = Completer<Rect>();
+    Image img = image != null
+        ? image
+        : ((url != null && url.isNotEmpty)
+            ? Image.network(url)
+            : Image.asset(localUrl, package: package));
+    img.image.resolve(new ImageConfiguration()).addListener(
+        (ImageInfo info, bool _) {
+      completer.complete(Rect.fromLTWH(
+          0, 0, info.image.width.toDouble(), info.image.height.toDouble()));
+    }, onError: (dynamic exception, StackTrace stackTrace) {
+      completer.completeError(exception, stackTrace);
+    });
+    return completer.future;
   }
 }

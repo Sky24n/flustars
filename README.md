@@ -10,10 +10,48 @@
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: ^0.2.4
+  flustars: ^0.2.5
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
+v0.2.5 (2019.03.07)  
+WidgetUtil 新增获取图片尺寸。 
+/// get image width height，load error return Rect.zero.（unit px）  
+/// 获取图片宽高，加载错误情况返回 Rect.zero.（单位 px）  
+Future<Rect> getImageWH({Image image, String url, String localUrl, String package});  
+  
+/// get image width height, load error throw exception.（unit px）  
+/// 获取图片宽高，加载错误会抛出异常.（单位 px）  
+Future<Rect> getImageWHE({Image image, String url, String localUrl, String package});
+```
+/// 获取CachedNetworkImage下的图片尺寸
+Image image = new Image(image: new CachedNetworkImageProvider("Url"));
+Rect rect1 = await WidgetUtil.getImageWH(image: image);  
+
+/// 其他image
+Image imageAsset = new Image.asset("");
+Image imageFile = new Image.file(File("path"));
+Image imageNetwork = new Image.network("url");
+Image imageMemory = new Image.memory(null);
+
+/// 获取网络图片尺寸
+Rect rect2 = await WidgetUtil.getImageWH(url: "Url");
+
+/// 获取本地图片尺寸 localUrl 需要全路径
+Rect rect3 = await WidgetUtil.getImageWH(localUrl: "assets/images/3.0x/ali_connors.png");
+
+/// 其他方式
+WidgetUtil.getImageWH(url: "Url").then((Rect rect) {
+  print("rect: " + rect.toString();
+});
+
+WidgetUtil.getImageWHE(url: "Url").then((Rect rect) {
+  print("rect: " + rect.toString();
+}).catchError((error) {
+  print("rect: " + error.toString();
+});
+```
+
 v0.2.4 (2019.02.27)  
 synchronized: '>=0.1.0 <3.0.0'  
 hared_preferences: '>=0.1.1 <1.0.0'  
@@ -81,7 +119,7 @@ SpUtil.getInt('key', defValue: 0);
 ### [Flutter工具类库 flustars][flustars_github]   
  1、SpUtil       : 单例"同步" SharedPreferences 工具类.  
  2、ScreenUtil   : 屏幕适配，获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
- 3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标.  
+ 3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标，获取图片尺寸.  
 
 ### [Dart常用工具类库 common_utils][common_utils_github]  
  1、TimelineUtil : 时间轴.(新)  
@@ -193,18 +231,12 @@ Orientation orientation = ScreenUtil.getOrientation(context);
 asyncPrepare              : Widget渲染监听，监听widget宽高变化,callback返回宽高等参数.
 getWidgetBounds           : 获取widget 宽高.
 getWidgetLocalToGlobal    : 获取widget在屏幕上的坐标.
+getImageWH                : 获取图片宽高，加载错误情况返回 Rect.zero.（单位 px）. 
+getImageWHE               : 获取图片宽高，加载错误会抛出异常.（单位 px）. 
 ```
 
-### 关于作者
-GitHub : [Sky24n](https://github.com/Sky24n)  
-简书 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://www.jianshu.com/u/cbf2ad25d33a)  
-掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)  
-Pub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://pub.flutter-io.cn/packages?q=email%3A863764940%40qq.com)    
-Email &nbsp;&nbsp;: 863764940@qq.com  
-如果您觉得本项目不错的话，来个star支持下作者吧！ 
-
 ### Demo Github : [flutter_wanandroid][flutter_wanandroid_github] 
-## 点击下载APK : [v0.1.2][flutter_wanandroid_apk] 
+## 点击下载APK : [v0.1.x][flutter_wanandroid_apk] 
 ## 扫码下载APK :
   ![flutter_wanandroid][flutter_wanandroid_qr] 
 
@@ -213,6 +245,25 @@ Email &nbsp;&nbsp;: 863764940@qq.com
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180930-012431.jpg" width="200">  <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-231618.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180926-144840.png" width="200">  
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-224204.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-224146.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-224231.jpg" width="200">   
 
+### 关于作者
+GitHub : [Sky24n](https://github.com/Sky24n)  
+简书 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://www.jianshu.com/u/cbf2ad25d33a)  
+掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)  
+Pub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://pub.flutter-io.cn/packages?q=email%3A863764940%40qq.com)    
+Email &nbsp;&nbsp;: 863764940@qq.com  
+
+如果您觉得本项目不错的话，来个star支持下作者吧！  
+
+作者其他开源项目  
+库 | 功能  
+-------- | ---
+**[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)**|**Flutter完整项目，WanAndroid客户端，BLoC，RxDart...**
+**[GreenTravel](https://github.com/Sky24n/GreenTravel)**|**Flutter仿滴滴出行**
+**[flustars](https://github.com/Sky24n/flustars)**|**Flutter常用工具类库，SpUtil, ScreenUtil,WidgetUtil. 也许是目前最好用的Sp工具类，也许是目前最好用的屏幕工具类。**
+**[common_utils](https://github.com/Sky24n/common_utils)**|**Dart常用工具类库。包含日期，正则，倒计时，定时任务，时间轴等工具类。**
+**[fluintl](https://github.com/Sky24n/fluintl)**|**Flutter国际化库，方便集成使用**
+**[azlistview](https://github.com/flutterchina/azlistview)**|**Flutter城市列表，联系人列表，索引&悬停**
+**[lpinyin](https://github.com/flutterchina/lpinyin)**|**Dart汉字转拼音库**
 
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
 [flutter_wanandroid_apk]: https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk
