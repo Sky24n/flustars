@@ -246,7 +246,7 @@ WidgetUtil.getImageWHE(url: "Url").then((Rect rect) {
 });
 ```
 
-### DioUtil (dio: ^1.0.13) 详细请求+解析请参考[flutter_wanandroid][flutter_wanandroid_github]项目。
+* #### DioUtil (dio: ^1.0.13) 详细请求+解析请参考[flutter_wanandroid][flutter_wanandroid_github]项目。
 ```
 // 打开debug模式.
 DioUtil.openDebug(); 
