@@ -15,7 +15,7 @@ dependencies:
 
 ## [更新说明](./doc/UPDATELOG.md)
 v0.2.5 (2019.03.07)  
-WidgetUtil 新增获取图片尺寸。 
+WidgetUtil 新增获取图片尺寸。  
 /// get image width height，load error return Rect.zero.（unit px）  
 /// 获取图片宽高，加载错误情况返回 Rect.zero.（单位 px）  
 Future<Rect> getImageWH({Image image, String url, String localUrl, String package});  
