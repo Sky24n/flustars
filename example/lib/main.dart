@@ -44,8 +44,13 @@ class _MyAppState extends State<MyApp> {
     setDesignWHD(360.0, 640.0, density: 3);
   }
 
+  /// SpUtil example.
   void _initAsync() async {
     await SpUtil.getInstance();
+
+    SpUtil.putString("username", "sky24");
+    String userName = SpUtil.getString("username", defValue: "");
+    print("thll userName: " + userName);
 
     /// save object example.
     /// 存储实体对象示例。

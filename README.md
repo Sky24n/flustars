@@ -52,74 +52,11 @@ WidgetUtil.getImageWHE(url: "Url").then((Rect rect) {
 });
 ```
 
-v0.2.4 (2019.02.27)  
-synchronized: '>=0.1.0 <3.0.0'  
-hared_preferences: '>=0.1.1 <1.0.0'  
-
-v0.2.3 (2019.02.26)  
-shared_preferences & synchronized 修改为动态依赖～  
-SpUtil 新增putObject，getObject，putObjectList，getObjectList。  
-Object 需要实现fromJson，toJson。
-```
-class City {
-  String name;
-
-  City({this.name});
-
-  City.fromJson(Map<String, dynamic> json) : name = json['name'];
-
-  Map<String, dynamic> toJson() => {
-        'name': name,
-      };
-
-  @override
-  String toString() {
-    StringBuffer sb = new StringBuffer('{');
-    sb.write("\"name\":\"$name\"");
-    sb.write('}');
-    return sb.toString();
-  }
-}
-
-void _initAsync() async {
-    await SpUtil.getInstance();
-
-    /// save object example.
-    /// 存储实体对象示例。
-    City city = new City();
-    city.name = "成都市";
-    SpUtil.putObject("loc_city", city);
-
-    Map dataStr = SpUtil.getObject("loc_city");
-    City hisCity = dataStr == null ? null : City.fromJson(dataStr);
-    print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
-
-    /// save object list example.
-    /// 存储实体对象List示例。
-    List<City> list = new List();
-    list.add(new City(name: "成都市"));
-    list.add(new City(name: "北京市"));
-    SpUtil.putObjectList("loc_city_list", list);
-
-    List<Map> dataList = SpUtil.getObjectList("loc_city_list");
-    List<City> _cityList = dataList?.map((value) {
-      return City.fromJson(value);
-    })?.toList();
-
-    print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
-}
-    
-```
-
-v0.2.2 SpUtil新增get默认值。  
-SpUtil.getString('key', defValue: '');    
-SpUtil.getInt('key', defValue: 0);
- 
-
 ### [Flutter工具类库 flustars][flustars_github]   
- 1、SpUtil       : 单例"同步" SharedPreferences 工具类.  
+ 1、SpUtil       : 单例"同步"SharedPreferences工具类。支持get传入默认值，支持存储对象，支持存储对象数组。
  2、ScreenUtil   : 屏幕适配，获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
- 3、WidgetUtil   : 获取Widget宽高，在屏幕上的坐标，获取图片尺寸.  
+ 3、WidgetUtil   : 监听Widget渲染状态，获取Widget宽高，在屏幕上的坐标，获取网络/本地图片尺寸.  
+ 4、DioUtil      : 单例Dio网络工具类(已迁移至此处[DioUtil](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/data/net/dio_util.dart))。
 
 ### [Dart常用工具类库 common_utils][common_utils_github]  
  1、TimelineUtil : 时间轴.(新)  
@@ -138,7 +75,7 @@ dependencies:
 ```
 
 ### APIs
-* #### SpUtil -> [Example](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/ui/pages/demos/sp_util_page.dart)
+* #### SpUtil -> [Example](./example/lib/main.dart)
 ```
 putObject
 getObject
@@ -160,6 +97,39 @@ getKeys
 remove
 clear
 isInitialized
+
+
+/// example.
+/// 等待Sp初始化完成。
+await SpUtil.getInstance();
+
+/// 同步存取，支持get默认参数。
+SpUtil.putString("username", "sky24");
+String userName = SpUtil.getString("username", defValue: "");
+
+/// save object example.
+/// 存储实体对象示例。
+City city = new City();
+city.name = "成都市";
+SpUtil.putObject("loc_city", city);
+
+Map dataStr = SpUtil.getObject("loc_city");
+City hisCity = dataStr == null ? null : City.fromJson(dataStr);
+print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
+
+/// save object list example.
+/// 存储实体对象List示例。
+List<City> list = new List();
+list.add(new City(name: "成都市"));
+list.add(new City(name: "北京市"));
+SpUtil.putObjectList("loc_city_list", list);
+
+List<Map> dataList = SpUtil.getObjectList("loc_city_list");
+List<City> _cityList = dataList?.map((value) {
+  return City.fromJson(value);
+})?.toList();
+
+print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
 ```
 
 * #### ScreenUtil -> [Example](./example/lib/main.dart) 
@@ -180,8 +150,9 @@ getStatusBarH(ctx)        : 当前状态栏高度.
 getBottomBarH(ctx)        : 当前BottomBar高度.
 getScaleW(ctx,size)       : 返回根据屏幕宽适配后尺寸.
 getScaleH(ctx,size)       : 返回根据屏幕高适配后尺寸.
-getScaleSp(ctx,size)      : 返回根据屏幕宽适配后字体尺寸.
-
+getScaleSp(ctx,size)      : 返回根据屏幕宽适配后字体尺寸.  
+  
+一、不依赖context
 // 屏幕宽
 double screenWidth = ScreenUtil.getInstance().screenWidth;
 // 屏幕高
@@ -204,7 +175,8 @@ double adapterSp100 = ScreenUtil.getInstance().getSp(100);
 double adapterW100px = ScreenUtil.getInstance().getWidthPx(300);
 // 根据屏幕高适配后尺寸(输入px)
 double adapterH100px = ScreenUtil.getInstance().getHeightPx(300);
-
+  
+二、依赖context
 // 屏幕宽
 double screenWidth = ScreenUtil.getScreenW(context);
 // 屏幕高
@@ -226,16 +198,102 @@ Orientation orientation = ScreenUtil.getOrientation(context);
 
 ```
 
-* #### WidgetUtil -> [Example](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/ui/pages/demos/widget_util_page.dart)
+* #### WidgetUtil -> [Example1](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/demos/widget_page.dart)，[Example2](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/demos/image_size_page.dart)
 ```
 asyncPrepare              : Widget渲染监听，监听widget宽高变化,callback返回宽高等参数.
 getWidgetBounds           : 获取widget 宽高.
 getWidgetLocalToGlobal    : 获取widget在屏幕上的坐标.
 getImageWH                : 获取图片宽高，加载错误情况返回 Rect.zero.（单位 px）. 
 getImageWHE               : 获取图片宽高，加载错误会抛出异常.（单位 px）. 
+
+/// widget渲染监听。
+WidgetUtil widgetUtil = new WidgetUtil();
+widgetUtil.asyncPrepare(context, true, (Rect rect) {
+  // widget渲染完成。
+});
+
+/// widget宽高。
+Rect rect = WidgetUtil.getWidgetBounds(context);
+
+/// widget在屏幕上的坐标。
+Offset offset = WidgetUtil.getWidgetLocalToGlobal(context);
+  
+/// 获取CachedNetworkImage下的图片尺寸
+Image image = new Image(image: new CachedNetworkImageProvider("Url"));
+Rect rect1 = await WidgetUtil.getImageWH(image: image);  
+
+/// 其他image
+Image imageAsset = new Image.asset("");
+Image imageFile = new Image.file(File("path"));
+Image imageNetwork = new Image.network("url");
+Image imageMemory = new Image.memory(null);
+
+/// 获取网络图片尺寸
+Rect rect2 = await WidgetUtil.getImageWH(url: "Url");
+
+/// 获取本地图片尺寸 localUrl 需要全路径
+Rect rect3 = await WidgetUtil.getImageWH(localUrl: "assets/images/3.0x/ali_connors.png");
+
+/// 其他方式
+WidgetUtil.getImageWH(url: "Url").then((Rect rect) {
+  print("rect: " + rect.toString();
+});
+
+WidgetUtil.getImageWHE(url: "Url").then((Rect rect) {
+  print("rect: " + rect.toString();
+}).catchError((error) {
+  print("rect: " + error.toString();
+});
 ```
 
-### Demo Github : [flutter_wanandroid][flutter_wanandroid_github] 
+### DioUtil (dio: ^1.0.13) 详细请求+解析请参考[flutter_wanandroid][flutter_wanandroid_github]项目。
+```
+// 打开debug模式.
+DioUtil.openDebug(); 
+
+// 配置网络参数.
+Options options = DioUtil.getDefOptions();
+options.baseUrl = "http://www.wanandroid.com/";
+HttpConfig config = new HttpConfig(options: options);
+DioUtil().setConfig(config);
+  
+// 两种单例请求方式.
+DioUtil().request<List>(Method.get, "banner/json");
+DioUtil.getInstance().request(Method.get, "banner/json");
+  
+//示例
+LoginReq req = new LoginReq('username', 'password');
+DioUtil().request(Method.post, "user/login",data: req.toJson());
+  
+//示例
+FormData formData = new FormData.from({
+      "username": "username",
+      "password": "password",
+    });
+DioUtil().requestR(Method.post, "user/login",data: rformData);
+  
+// 网络请求日志  
+I/flutter ( 5922): ----------------Http Log----------------
+I/flutter ( 5922): [statusCode]:   200
+I/flutter ( 5922): [request   ]:   method: GET  baseUrl: http://www.wanandroid.com/  path: lg/collect/list/0/json
+I/flutter ( 5922): [reqdata   ]:   null
+I/flutter ( 5922): [response  ]:   {data: {curPage: 1, datas: [], offset: 0, over: true, pageCount: 0, size: 20, total: 0}, errorCode: 0, errorMsg: }
+```
+
+### [Flutter Demos][flutter_wanandroid_github]   
+ 
+>- |--demos
+>    - |-- city_select_page.dart 城市列表(索引&悬停)示例
+>    - |-- date_page.dart 日期格式化示例
+>    - |-- image_size_page.dart 获取网络/本地图片尺寸示例
+>    - |-- money_page.dart 金额(元转分/分转元)示例
+>    - |-- pinyin_page.dart 汉字转拼音示例
+>    - |-- regex_page.dart 正则工具类示例
+>    - |-- round_portrait_page.dart 圆形圆角头像示例
+>    - |-- timeline_page.dart 时间轴示例
+>    - |-- timer_page.dart 倒计时/定时任务示例
+>    - |-- widget_page.dart 获取Widget尺寸/屏幕坐标示例
+
 ## 点击下载APK : [v0.1.x][flutter_wanandroid_apk] 
 ## 扫码下载APK :
   ![flutter_wanandroid][flutter_wanandroid_qr] 
