@@ -8,7 +8,7 @@
 如果您是用于开源项目，未经本人许可，请勿copy源码到您的项目使用！  
 
 ### 使用方式：
-```yaml
+```dart
 dependencies:
   flustars: ^0.2.5
 ```
@@ -23,7 +23,7 @@ Future<Rect> getImageWH({Image image, String url, String localUrl, String packag
 /// get image width height, load error throw exception.（unit px）  
 /// 获取图片宽高，加载错误会抛出异常.（单位 px）  
 Future<Rect> getImageWHE({Image image, String url, String localUrl, String package});
-```
+```dart
 /// 获取CachedNetworkImage下的图片尺寸
 Image image = new Image(image: new CachedNetworkImageProvider("Url"));
 Rect rect1 = await WidgetUtil.getImageWH(image: image);  
@@ -69,14 +69,14 @@ WidgetUtil.getImageWHE(url: "Url").then((Rect rect) {
  8、ObjectUtil   : 判断对象是否为空(String List Map),判断两个List是否相等. 
 
 ### Add dependency
-```yaml
+```dart
 dependencies:
   flustars: x.x.x  #latest version
 ```
 
 ### APIs
 * #### SpUtil -> [Example](./example/lib/main.dart)
-```
+```dart
 putObject
 getObject
 putObjectList
@@ -133,7 +133,7 @@ print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
 ```
 
 * #### ScreenUtil -> [Example](./example/lib/main.dart) 
-```
+```dart
 getWidth                  : 返回根据屏幕宽适配后尺寸.
 getHeight                 : 返回根据屏幕高适配后尺寸.
 getWidthPx                : 返回根据屏幕宽适配后尺寸.
@@ -199,7 +199,7 @@ Orientation orientation = ScreenUtil.getOrientation(context);
 ```
 
 * #### WidgetUtil -> [Example1](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/demos/widget_page.dart)，[Example2](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/demos/image_size_page.dart)
-```
+```dart
 asyncPrepare              : Widget渲染监听，监听widget宽高变化,callback返回宽高等参数.
 getWidgetBounds           : 获取widget 宽高.
 getWidgetLocalToGlobal    : 获取widget在屏幕上的坐标.
@@ -247,7 +247,7 @@ WidgetUtil.getImageWHE(url: "Url").then((Rect rect) {
 ```
 
 * #### DioUtil (dio: ^1.0.13) 详细请求+解析请参考[flutter_wanandroid][flutter_wanandroid_github]项目。
-```
+```dart
 // 打开debug模式.
 DioUtil.openDebug(); 
 
