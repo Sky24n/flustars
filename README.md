@@ -97,39 +97,207 @@ getKeys
 remove
 clear
 isInitialized
+  
+  
+/// SpUtil使用建议：
+/// 增加闪屏页，在闪屏页SpUtil初始化完成， await SpUtil.getInstance();
+/// 跳转到主页后，可以直接同步使用。 String defName = SpUtil.getString("username");
+  
+  
+/// SpUtil详细使用示例！  
+void main() => runApp(MyApp());
+  
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+  
+class MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    _initAsync();
+  }
+  
+  _initAsync() async {
+    /// App启动时读取Sp数据，需要异步等待Sp初始化完成。
+    await SpUtil.getInstance();
 
+    /// 同步使用Sp。
+    SpUtil.remove("username");
+    String defName = SpUtil.getString("username", defValue: "sky");
+    SpUtil.putString("username", "sky24");
+    String name = SpUtil.getString("username");
+    print("MyApp defName: $defName, name: $name");
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        '/MainPage': (ctx) => MyHomePage(),
+      },
+      home: SplashPage(),
+    );
+  }
+}  
+  
+/// 闪屏页。
+class SplashPage extends StatefulWidget {
+  SplashPage({Key key}) : super(key: key);
+  
+  @override
+  _SplashPageState createState() => _SplashPageState();
+}
+  
+class _SplashPageState extends State<SplashPage> {
+  String _info = '';
+  
+  @override
+  void initState() {
+    super.initState();
+    _initAsync();
+  }
+  
+  _initAsync() async {
+    /// App启动时读取Sp数据，需要异步等待Sp初始化完成。
+    await SpUtil.getInstance();
+    Future.delayed(new Duration(milliseconds: 500), () {
+      /// 同步使用Sp。
+      /// 是否显示引导页。
+      if (SpUtil.getBool("key_guide", defValue: true)) {
+        SpUtil.putBool("key_guide", false);
+        _initBanner();
+      } else {
+        _initSplash();
+      }
+    });
+  }
+  
+  /// App引导页逻辑。
+  void _initBanner() {
+    setState(() {
+      _info = "引导页～";
+    });
+  }
+  
+  /// App广告页逻辑。
+  void _initSplash() {
+    setState(() {
+      _info = "广告页，2秒后跳转到主页";
+    });
+    Future.delayed(new Duration(milliseconds: 2000), () {
+      Navigator.of(context).pushReplacementNamed('/MainPage');
+    });
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Splash"),
+      ),
+      body: new Center(
+        child: new Text("$_info"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          bool isGuide = SpUtil.getBool("key_guide", defValue: true);
+          if (isGuide) {
+            Navigator.of(context).pushReplacementNamed('/MainPage');
+          }
+        },
+        child: Icon(Icons.navigate_next),
+      ),
+    );
+  }
+}
+  
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key}) : super(key: key);
+  
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+  
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    
+    /// 同步使用Sp。
+   
+    /// 存取基础类型
+    SpUtil.putString("username", "Sky24n");
+    String userName = SpUtil.getString("username");
+    print("MyHomePage userName: " + userName);
+    
+    bool isFirst = SpUtil.getBool("userName", defValue: true);
+    SpUtil.putBool("isFirst", false);
+    print("MyHomePage isFirst: $isFirst");
+    
+    /// save object example.
+    /// 存储实体对象示例。
+    City city = new City();
+    city.name = "成都市";
+    SpUtil.putObject("loc_city", city);
+    
+    Map dataMap = SpUtil.getObject("loc_city");
+    City hisCity = dataMap == null ? null : City.fromJson(dataMap);
+    print("City: " + (hisCity == null ? "null" : hisCity.toString()));
+    
+    /// save object list example.
+    /// 存储实体对象list示例。
+    List<City> list = new List();
+    list.add(new City(name: "成都市"));
+    list.add(new City(name: "北京市"));
+    SpUtil.putObjectList("loc_city_list", list);
+    
+    List<Map> dataMapList = SpUtil.getObjectList("loc_city_list");
+    List<City> _cityList = dataMapList?.map((value) {
+      return City.fromJson(value);
+    })?.toList();
+    
+    print("City list: " + (_cityList == null ? "null" : _cityList.toString()));
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: new Center(
+        child: new Text(SpUtil.getString("username")),
+      ),
+    );
+  }
+}
+  
+class City {
+  String name;
+  
+  City({this.name});
+  
+  /// 必须写.
+  City.fromJson(Map<String, dynamic> json) : name = json['name'];
+  
+  /// 必须写.
+  Map<String, dynamic> toJson() => {
+        'name': name,
+      };
+  
+  @override
+  String toString() {
+    StringBuffer sb = new StringBuffer('{');
+    sb.write("\"name\":\"$name\"");
+    sb.write('}');
+    return sb.toString();
+  }
+}
 
-/// example.
-/// 等待Sp初始化完成。
-await SpUtil.getInstance();
-
-/// 同步存取，支持get默认参数。
-SpUtil.putString("username", "sky24");
-String userName = SpUtil.getString("username", defValue: "");
-
-/// save object example.
-/// 存储实体对象示例。
-City city = new City();
-city.name = "成都市";
-SpUtil.putObject("loc_city", city);
-
-Map dataStr = SpUtil.getObject("loc_city");
-City hisCity = dataStr == null ? null : City.fromJson(dataStr);
-print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
-
-/// save object list example.
-/// 存储实体对象List示例。
-List<City> list = new List();
-list.add(new City(name: "成都市"));
-list.add(new City(name: "北京市"));
-SpUtil.putObjectList("loc_city_list", list);
-
-List<Map> dataList = SpUtil.getObjectList("loc_city_list");
-List<City> _cityList = dataList?.map((value) {
-  return City.fromJson(value);
-})?.toList();
-
-print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
 ```
 
 * #### ScreenUtil -> [Example](./example/lib/main.dart) 
