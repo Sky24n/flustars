@@ -1,4 +1,4 @@
-package com.thl.flustarsexample;
+package com.thl.flustars_example;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

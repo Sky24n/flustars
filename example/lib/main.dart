@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
 
     Map dataStr = SpUtil.getObject("loc_city");
     City hisCity = dataStr == null ? null : City.fromJson(dataStr);
-    print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
+    print("thll City: " + (hisCity == null ? "null" : hisCity.toString()));
 
     /// save object list example.
     /// 存储实体对象list示例。
@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
       return City.fromJson(value);
     })?.toList();
 
-    print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
+    print("thll CityList: " + (_cityList == null ? "null" : _cityList.toString()));
   }
 
   @override
