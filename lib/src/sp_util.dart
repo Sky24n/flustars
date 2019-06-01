@@ -9,8 +9,8 @@ import 'package:synchronized/synchronized.dart';
  * @GitHub: https://github.com/Sky24n
  * @Email: 863764940@qq.com
  * @Email: sky24no@gmail.com
- * @Description: Sp Util.
  * @Date: 2018/9/8
+ * @Description: Sp Util.
  */
 
 /// SharedPreferences Util.

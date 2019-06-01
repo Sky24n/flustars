@@ -1,16 +1,22 @@
 # flustars(Flutter常用工具类库)
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
-## [flustars] Flutter常用工具类库。主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
+## 主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
+目前包含SharedPreferences Util, Screen Util, Widget Util。
 
-### 关于使用本开源库
+### 关于使用本开源库规则
 如果您是用于公司项目，请随意使用～  
-如果您是用于开源项目，未经本人许可，请勿copy源码到您的项目使用！  
+
+如果您是用于个人开源项目，未经本人许可，请勿copy源码到您的项目使用！ 
+如果大家都copy源码到自己项目中使用，而不去使用pub库，那作者也就没有必要继续更新及维护本项目！  
+希望大家且行且珍惜~
 
 ### 使用方式：
 ```dart
 dependencies:
-  flustars: ^0.2.5
+  flustars: ^0.2.5+1
+  
+import 'package:flustars/flustars.dart';  
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
@@ -102,7 +108,8 @@ isInitialized
 /// SpUtil使用建议：
 /// 增加闪屏页，在闪屏页SpUtil初始化完成， await SpUtil.getInstance();
 /// 跳转到主页后，可以直接同步使用。 String defName = SpUtil.getString("username");
-  
+   
+import 'package:flustars/flustars.dart'; 
   
 /// SpUtil详细使用示例！  
 void main() => runApp(MyApp());

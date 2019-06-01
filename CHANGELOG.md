@@ -1,3 +1,7 @@
+### 0.2.5+1
+
+* TODO: fix WidgetUtil error with flutter v1.6.3.
+
 ### 0.2.5
 
 * TODO: WidgetUtil add getImageWH(x,x,x,x).

@@ -1,6 +1,6 @@
 name: flustars
 description: Flutter common utils library. SpUtil, ScreenUtil, WidgetUtil. SharedPreferences Util. Screen info & Screen adaptation. get image size.
-version: 0.2.6
+version: 0.2.5+1
 author: thl <863764940@qq.com>
 homepage: https://github.com/Sky24n/flustars
 
