@@ -20,6 +20,9 @@ import 'package:flustars/flustars.dart';
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
+
+🔥🔥🔥Flutter全局屏幕适配[auto_size](https://github.com/flutterchina/auto_size),欢迎使用～  
+  
 v0.2.5 (2019.03.07)  
 WidgetUtil 新增获取图片尺寸。  
 /// get image width height，load error return Rect.zero.（unit px）  
