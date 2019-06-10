@@ -1,8 +1,8 @@
 # flustars(Flutter常用工具类库)
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
-## flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家提供简单易用工具类。如果你有好的工具类欢迎PR. 
-目前包含SharedPreferences Util, Screen Util, Widget Util。
+flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家分享简单易用工具类。如果你有好的工具类欢迎PR. 
+目前包含SharedPreferences Util, Screen Util, Directory Util, Widget Util。
 
 ### 关于使用本开源库规则
 如果您是用于公司项目，请随意使用～  
@@ -14,17 +14,37 @@
 ### 使用方式：
 ```dart
 dependencies:
-  flustars: ^0.2.5+1
+  flustars: ^0.2.6
   
 import 'package:flustars/flustars.dart';  
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
+🔥🔥🔥Flutter全局屏幕适配[auto_size](https://github.com/flutterchina/auto_size),欢迎使用～   
+  
+v0.2.6 (2019.06.11)  
+1.新增文件目录工具类
+```dart  
+await DirectoryUtil.getInstance();
+String path = DirectoryUtil.getTempPath(fileName: 'demo.png', category: 'image');
+String path = DirectoryUtil.getAppDocPath(fileName: 'demo.mp4', category: 'video');
+String path = DirectoryUtil.getStoragePath(fileName: 'flutterwanandroid.apk', package: 'com.thl.flutterwanandroid');
 
+Directory dir = DirectoryUtil.createTempDirSync(package: 'doc', category: 'image');
+...
+```
 
+2.SpUtil全面支持读取对象，对象列表。
+```dart  
+City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));  
+List<City> dataList = SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
+```   
 
-
-🔥🔥🔥Flutter全局屏幕适配[auto_size](https://github.com/flutterchina/auto_size),欢迎使用～  
+3.ScreenUtil 兼容横/纵屏适配。
+```dart  
+double adapterSize = ScreenUtil.getInstance().getAdapterSize(100);
+double adapterSize = ScreenUtil.getAdapterSizeCtx(context, 100)
+``` 
   
 v0.2.5 (2019.03.07)  
 WidgetUtil 新增获取图片尺寸。  
@@ -87,6 +107,24 @@ dependencies:
 ```
 
 ### APIs
+* #### DirectoryUtil
+```dart
+setInitDir
+initTempDir
+initAppDocDir
+createDirSync
+createDir
+getTempPath
+getAppDocPath
+getStoragePath
+createTempDirSync
+createAppDocDirSync
+createStorageDirSync
+createTempDir
+createAppDocDir
+createStorageDir
+```
+
 * #### SpUtil -> [Example](./example/lib/main.dart)
 ```dart
 putObject
@@ -111,7 +149,36 @@ clear
 isInitialized
   
   
-/// SpUtil使用建议：
+/// SpUtil使用：
+/// 方式一
+/// 等待sp初始化完成后再运行app。
+/// sp初始化时间 release模式下30ms左右，debug模式下100多ms。
+void main() async {
+  await SpUtil.getInstance();
+  runApp(MyApp());
+}
+
+class MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    /// 同步使用Sp。
+    SpUtil.remove("username");
+    String defName = SpUtil.getString("username", defValue: "sky");
+    SpUtil.putString("username", "sky24");
+    String name = SpUtil.getString("username");
+    print("MyApp defName: $defName, name: $name");
+  }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SplashPage(),
+    );
+  }
+}  
+
+
+/// 方式二
 /// 增加闪屏页，在闪屏页SpUtil初始化完成， await SpUtil.getInstance();
 /// 跳转到主页后，可以直接同步使用。 String defName = SpUtil.getString("username");
    

@@ -1,6 +1,6 @@
 ### 0.2.6
 
-* TODO: xxx.
+* TODO: dependencies common_utils ，new DirectoryUtil, SpUtil add getObj，getObjList, ScreenUtil add getAdapterSize, getAdapterSizeCtx.
 
 ### 0.2.5+1
 

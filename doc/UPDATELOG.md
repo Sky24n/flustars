@@ -1,4 +1,28 @@
 ## 更新说明
+v0.2.6 (2019.06.11)  
+1.新增文件目录工具类
+```dart  
+await DirectoryUtil.getInstance();
+String path = DirectoryUtil.getTempPath(fileName: 'demo.png', category: 'image');
+String path = DirectoryUtil.getAppDocPath(fileName: 'demo.mp4', category: 'video');
+String path = DirectoryUtil.getStoragePath(fileName: 'flutterwanandroid.apk', package: 'com.thl.flutterwanandroid');
+
+Directory dir = DirectoryUtil.createTempDirSync(package: 'doc', category: 'image');
+...
+```
+
+2.SpUtil全面支持读取对象，对象列表。
+```dart  
+City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));  
+List<City> dataList = SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
+```   
+
+3.ScreenUtil 兼容横/纵屏适配。
+```dart  
+double adapterSize = ScreenUtil.getInstance().getAdapterSize(100);
+double adapterSize = ScreenUtil.getAdapterSizeCtx(context, 100)
+``` 
+
 v0.2.5 (2019.03.07)  
 WidgetUtil 新增获取图片尺寸。   
 /// get image width height，load error return Rect.zero.（unit px）  

@@ -36,7 +36,7 @@ class SpUtil {
 
   SpUtil._();
 
-  Future _init() async {
+  void _init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
@@ -44,6 +44,12 @@ class SpUtil {
   static Future<bool> putObject(String key, Object value) {
     if (_prefs == null) return null;
     return _prefs.setString(key, value == null ? "" : json.encode(value));
+  }
+
+  /// get obj.
+  static T getObj<T>(String key, T f(Map v), {T defValue}) {
+    Map map = getObject(key);
+    return map == null ? defValue : f(map);
   }
 
   /// get object.
@@ -60,6 +66,16 @@ class SpUtil {
       return json.encode(value);
     })?.toList();
     return _prefs.setStringList(key, _dataList);
+  }
+
+  /// get obj list.
+  static List<T> getObjList<T>(String key, T f(Map v),
+      {List<T> defValue = const []}) {
+    List<Map> dataList = getObjectList(key);
+    List<T> list = dataList?.map((value) {
+      return f(value);
+    })?.toList();
+    return list ?? defValue;
   }
 
   /// get object list.

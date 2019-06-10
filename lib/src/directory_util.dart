@@ -27,6 +27,17 @@ import 'package:synchronized/synchronized.dart';
 /// 在iOS上，这个函数抛出一个[UnsupportedError]，因为它不可能访问应用程序的沙箱之外。
 /// 在Android上，它使用“getExternalStorageDirectory”API。
 
+bool _initTempDir = true;
+bool _initAppDocDir = true;
+bool _initStorageDir = true;
+
+/// 配置初始化Directory。
+void setInitDir({bool initTempDir, bool initAppDocDir, bool initStorageDir}) {
+  _initTempDir = initTempDir ?? _initTempDir;
+  _initAppDocDir = initAppDocDir ?? _initAppDocDir;
+  _initStorageDir = initStorageDir ?? _initStorageDir;
+}
+
 /**
  * @Author: thl
  * @GitHub: https://github.com/Sky24n
@@ -36,7 +47,7 @@ import 'package:synchronized/synchronized.dart';
  * @Date: 2019/05/09
  */
 
-///
+/// DirectoryUtil。
 class DirectoryUtil {
   static DirectoryUtil _singleton;
 
@@ -63,22 +74,76 @@ class DirectoryUtil {
 
   DirectoryUtil._();
 
-  Future _init() async {
-    _tempDir = await getTemporaryDirectory();
-    _appDocDir = await getApplicationDocumentsDirectory();
-    if (Platform.isAndroid) {
-      _storageDir = await getExternalStorageDirectory();
+  void _init() async {
+    if (_initTempDir) {
+      await initTempDir();
     }
-    if (Platform.isIOS) {
-      _storageDir = await getApplicationSupportDirectory();
+    if (_initAppDocDir) {
+      await initAppDocDir();
+    }
+    if (_initStorageDir) {
+      await initStorageDir();
     }
   }
 
-  static String getTempPath(
-      {String fileName,
-      String format,
-      String package = 'doc',
-      String category}) {
+  static void initTempDir() async {
+    if (_tempDir == null) {
+      _tempDir = await getTemporaryDirectory();
+    }
+  }
+
+  static void initAppDocDir() async {
+    if (_appDocDir == null) {
+      _appDocDir = await getApplicationDocumentsDirectory();
+    }
+  }
+
+  static void initStorageDir() async {
+    if (_storageDir == null) {
+      if (Platform.isAndroid) {
+        _storageDir = await getExternalStorageDirectory();
+      }
+      if (Platform.isIOS) {
+        _storageDir = await getApplicationSupportDirectory();
+      }
+    }
+  }
+
+  /// 同步创建文件夹
+  static Directory createDirSync(String path) {
+    if (ObjectUtil.isEmpty(path)) return null;
+    Directory dir = new Directory(path);
+    if (!dir.existsSync()) {
+      dir.createSync(recursive: true);
+    }
+    return dir;
+  }
+
+  /// 异步创建文件夹
+  static Future<Directory> createDir(String path) async {
+    if (ObjectUtil.isEmpty(path)) return null;
+    Directory dir = new Directory(path);
+    bool exist = await dir.exists();
+    if (!exist) {
+      dir = await dir.create(recursive: true);
+    }
+    return dir;
+  }
+
+  /// fileName 文件名
+  /// format 文件格式，如果文件名包含格式，则不需要
+  /// package 顶层文件夹名，默认doc
+  /// category 分类，例如：video，image等等
+  /// String path = DirectoryUtil.getTempPath(fileName: 'demo.png', category: 'image');
+  /// String path = DirectoryUtil.getTempPath(fileName: 'demo', format: 'png', category: 'image');
+  /// Android: /data/user/0/com.thl.flustars_example/cache/doc/image/demo.png
+  /// iOS: xxx;
+  static String getTempPath({
+    String fileName,
+    String format,
+    String package = 'doc',
+    String category,
+  }) {
     if (_tempDir == null) return null;
     StringBuffer sb = new StringBuffer("${_tempDir.path}");
     if (!ObjectUtil.isEmpty(package)) sb.write("/$package");
@@ -88,11 +153,20 @@ class DirectoryUtil {
     return sb.toString();
   }
 
-  static String getAppDocPath(
-      {String fileName,
-      String format,
-      String package = 'doc',
-      String category}) {
+  /// fileName 文件名
+  /// format 文件格式，如果文件名包含格式，则不需要
+  /// package 顶层文件夹名，默认doc
+  /// category 分类，例如：video，image等等
+  /// String path = DirectoryUtil.getAppDocPath(fileName: 'demo.mp4', category: 'video');
+  /// String path = DirectoryUtil.getAppDocPath(fileName: 'demo', format: 'mp4', category: 'video');
+  /// Android: /data/user/0/com.thl.flustars_example/app_flutter/doc/video/demo.mp4
+  /// iOS: xxx;
+  static String getAppDocPath({
+    String fileName,
+    String format,
+    String package = 'doc',
+    String category,
+  }) {
     if (_appDocDir == null) return null;
     StringBuffer sb = new StringBuffer("${_appDocDir.path}");
     if (!ObjectUtil.isEmpty(package)) sb.write("/$package");
@@ -102,8 +176,20 @@ class DirectoryUtil {
     return sb.toString();
   }
 
-  static String getStoragePath(
-      {String fileName, String format, String package, String category}) {
+  /// fileName 文件名
+  /// format 文件格式，如果文件名包含格式，则不需要
+  /// package 顶层文件夹名，建议使用包名
+  /// category 分类，例如：video，image等等
+  /// String path = DirectoryUtil.getStoragePath(fileName: 'flutterwanandroid.apk', package: 'com.thl.flutterwanandroid');
+  /// String path = DirectoryUtil.getStoragePath(fileName: 'flutterwanandroid', format: 'apk', package: 'com.thl.flutterwanandroid');
+  /// Android: /storage/emulated/0/com.thl.flutterwanandroid/flutterwanandroid.apk
+  /// iOS: xxx;
+  static String getStoragePath({
+    String fileName,
+    String format,
+    String package,
+    String category,
+  }) {
     if (_storageDir == null) return null;
     StringBuffer sb = new StringBuffer("${_storageDir.path}");
     if (!ObjectUtil.isEmpty(package)) sb.write("/$package");
@@ -113,20 +199,39 @@ class DirectoryUtil {
     return sb.toString();
   }
 
-  static Directory createDirSync(String path) {
-    Directory dir = new Directory(path);
-    if (!dir.existsSync()) {
-      dir.createSync(recursive: true);
-    }
-    return dir;
+  static Directory createTempDirSync({String package, String category}) {
+    String path = getTempPath(package: package, category: category);
+    return createDirSync(path);
   }
 
-  static Future<Directory> createDir(String path) async {
-    Directory dir = new Directory(path);
-    bool exist = await dir.exists();
-    if (!exist) {
-      dir = await dir.create(recursive: true);
-    }
-    return dir;
+  static Directory createAppDocDirSync({String package, String category}) {
+    String path = getAppDocPath(package: package, category: category);
+    return createDirSync(path);
+  }
+
+  static Directory createStorageDirSync({String package, String category}) {
+    String path = getStoragePath(package: package, category: category);
+    return createDirSync(path);
+  }
+
+  static Future<Directory> createTempDir(
+      {String package, String category}) async {
+    await initTempDir();
+    String path = getTempPath(package: package, category: category);
+    return createDir(path);
+  }
+
+  static Future<Directory> createAppDocDir(
+      {String package, String category}) async {
+    await initAppDocDir();
+    String path = getAppDocPath(package: package, category: category);
+    return createDir(path);
+  }
+
+  static Future<Directory> createStorageDir(
+      {String package, String category}) async {
+    await initStorageDir();
+    String path = getStoragePath(package: package, category: category);
+    return createDir(path);
   }
 }

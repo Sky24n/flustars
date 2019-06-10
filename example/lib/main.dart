@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
     SpUtil.putString("username", "sky24");
     String userName = SpUtil.getString("username", defValue: "");
-    print("thll  thll userName: " + userName);
+    print("thll userName: " + userName);
 
     /// save object example.
     /// 存储实体对象示例。
@@ -58,10 +58,8 @@ class _MyAppState extends State<MyApp> {
     city.name = "成都市";
     SpUtil.putObject("loc_city", city);
 
-    Map dataStr = SpUtil.getObject("loc_city");
-    City hisCity = dataStr == null ? null : City.fromJson(dataStr);
-    print(
-        "thll  thll City: " + (hisCity == null ? "null" : hisCity.toString()));
+    City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));
+    print("thll City: " + (hisCity == null ? "null" : hisCity.toString()));
 
     /// save object list example.
     /// 存储实体对象list示例。
@@ -70,13 +68,10 @@ class _MyAppState extends State<MyApp> {
     list.add(new City(name: "北京市"));
     SpUtil.putObjectList("loc_city_list", list);
 
-    List<Map> dataList = SpUtil.getObjectList("loc_city_list");
-    List<City> _cityList = dataList?.map((value) {
-      return City.fromJson(value);
-    })?.toList();
-
-    print("thll  thll CityList: " +
-        (_cityList == null ? "null" : _cityList.toString()));
+    List<City> dataList =
+        SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
+    print(
+        "thll CityList: " + (dataList == null ? "null" : dataList.toString()));
   }
 
   @override
