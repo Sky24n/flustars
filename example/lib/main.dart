@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
     SpUtil.putString("username", "sky24");
     String userName = SpUtil.getString("username", defValue: "");
-    print("thll userName: " + userName);
+    print("thll  thll userName: " + userName);
 
     /// save object example.
     /// 存储实体对象示例。
@@ -60,7 +60,8 @@ class _MyAppState extends State<MyApp> {
 
     Map dataStr = SpUtil.getObject("loc_city");
     City hisCity = dataStr == null ? null : City.fromJson(dataStr);
-    print("thll City: " + (hisCity == null ? "null" : hisCity.toString()));
+    print(
+        "thll  thll City: " + (hisCity == null ? "null" : hisCity.toString()));
 
     /// save object list example.
     /// 存储实体对象list示例。
@@ -74,7 +75,8 @@ class _MyAppState extends State<MyApp> {
       return City.fromJson(value);
     })?.toList();
 
-    print("thll CityList: " + (_cityList == null ? "null" : _cityList.toString()));
+    print("thll  thll CityList: " +
+        (_cityList == null ? "null" : _cityList.toString()));
   }
 
   @override
@@ -107,10 +109,12 @@ class MainPageState extends State<MainPage> {
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
     double density = ScreenUtil.getInstance().screenDensity;
-    double sp = ScreenUtil.getInstance().getSp(24);
-    double spc = ScreenUtil.getScaleSp(context, 24);
+    double sp = ScreenUtil.getInstance().getAdapterSize(24);
+    double spc = ScreenUtil.getInstance().getAdapterSize(24);
+    double adapterW = ScreenUtil.getInstance().getAdapterSize(360);
+
     print(
-        "MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc");
+        "thll  MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc, adapterW: $adapterW");
 
     return new Scaffold(
       // 一个不需要GlobalKey就可以openDrawer的AppBar
@@ -147,7 +151,7 @@ class MainPageState extends State<MainPage> {
             ),
           ),
           new Container(
-            width: ScreenUtil.getInstance().getWidth(360.0),
+            width: ScreenUtil.getInstance().getAdapterSize(360.0),
             height: 50,
             color: Colors.grey,
             child: new Center(
@@ -170,14 +174,14 @@ class MainPageState extends State<MainPage> {
           ),
           new Container(
             margin: EdgeInsets.only(top: 10.0),
-            width: ScreenUtil.getInstance().getWidth(100.0),
-            height: ScreenUtil.getInstance().getWidth(100.0),
+            width: ScreenUtil.getInstance().getAdapterSize(100.0),
+            height: ScreenUtil.getInstance().getAdapterSize(100.0),
             color: Colors.grey,
             child: new Center(
               child: new Text(
                 "你好你好你好",
                 style: new TextStyle(
-                    fontSize: ScreenUtil.getInstance().getSp(24.0)),
+                    fontSize: ScreenUtil.getInstance().getAdapterSize(24.0)),
               ),
             ),
           ),
@@ -194,7 +198,8 @@ class MyDrawer extends StatelessWidget {
     double statusBar = ScreenUtil.getInstance().statusBarHeight;
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
-    print("SecondPage statusBar: $statusBar, width: $width, height: $height");
+    print(
+        " thll  SecondPage statusBar: $statusBar, width: $width, height: $height");
 
     return new Container(
       color: Colors.white,
@@ -248,7 +253,7 @@ class SecondPageState extends State<SecondPage> {
     double adapterW100px = ScreenUtil.getInstance().getWidthPx(300);
     double adapterH100px = ScreenUtil.getInstance().getHeightPx(300);
 
-    print("SecondPage _init screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
+    print("thll  SecondPage _init screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
         ", statusBarHeight: $statusBarHeight, bottomBarHeight: $bottomBarHeight, appBarHeight: $appBarHeight" +
         ", adapterW100: $adapterW100, adapterH100: $adapterH100, adapterSp100: $adapterSp100" +
         ", adapterW100px: $adapterW100px, adapterH100px: $adapterH100px");
@@ -265,7 +270,7 @@ class SecondPageState extends State<SecondPage> {
     double adapterSp100 = ScreenUtil.getScaleSp(context, 100);
     Orientation orientation = ScreenUtil.getOrientation(context);
 
-    print("SecondPage _initWithCtx screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
+    print("thll  SecondPage _initWithCtx screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
         ", statusBarHeight: $statusBarHeight, bottomBarHeight: $bottomBarHeight" +
         ", adapterW100: $adapterW100, adapterH100: $adapterH100, adapterSp100: $adapterSp100");
   }
@@ -275,7 +280,8 @@ class SecondPageState extends State<SecondPage> {
     double statusBar = ScreenUtil.getInstance().statusBarHeight;
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
-    print("SecondPage statusBar: $statusBar, width: $width, height: $height");
+    print(
+        "thll  SecondPage statusBar: $statusBar, width: $width, height: $height");
 
     return new Scaffold(
       appBar: new AppBar(
@@ -298,27 +304,27 @@ class SecondPageState extends State<SecondPage> {
           ),
           new Container(
             margin: EdgeInsets.only(top: 10.0),
-            width: ScreenUtil.getInstance().getWidth(100.0),
-            height: ScreenUtil.getInstance().getWidth(100.0),
+            width: ScreenUtil.getInstance().getAdapterSize(100.0),
+            height: ScreenUtil.getInstance().getAdapterSize(100.0),
             color: Colors.grey,
             child: new Center(
               child: new Text(
                 "你好你好你好",
                 style: new TextStyle(
-                    fontSize: ScreenUtil.getInstance().getSp(24.0)),
+                    fontSize: ScreenUtil.getInstance().getAdapterSize(24.0)),
               ),
             ),
           ),
           new Container(
             margin: EdgeInsets.only(top: 10.0),
-            width: ScreenUtil.getScaleW(context, 100.0),
-            height: ScreenUtil.getScaleW(context, 100.0),
+            width: ScreenUtil.getAdapterSizeCtx(context, 100.0),
+            height: ScreenUtil.getAdapterSizeCtx(context, 100.0),
             color: Colors.grey,
             child: new Center(
               child: new Text(
                 "你好你好你好",
                 style: new TextStyle(
-                    fontSize: ScreenUtil.getScaleSp(context, 24.0)),
+                    fontSize: ScreenUtil.getAdapterSizeCtx(context, 24.0)),
               ),
             ),
           ),

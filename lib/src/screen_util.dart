@@ -25,9 +25,9 @@ double _designD = 3.0;
 /// 配置设计稿尺寸 屏幕 宽，高，密度。
 /// Configuration design draft size  screen width, height, density.
 void setDesignWHD(double w, double h, {double density = 3.0}) {
-  _designW = w;
-  _designH = h;
-  _designD = density;
+  _designW = w ?? _designW;
+  _designH = h ?? _designH;
+  _designD = density ?? _designD;
 }
 
 /// Screen Util.
@@ -127,6 +127,7 @@ class ScreenUtil {
     return mediaQuery;
   }
 
+  /// 仅支持纵屏。
   /// returns the size after adaptation according to the screen width.(unit dp or pt)
   /// 返回根据屏幕宽适配后尺寸（单位 dp or pt）
   /// size 单位 dp or pt
@@ -135,6 +136,7 @@ class ScreenUtil {
     return size * getScreenW(context) / _designW;
   }
 
+  /// 仅支持纵屏。
   /// returns the size after adaptation according to the screen height.(unit dp or pt)
   /// 返回根据屏幕高适配后尺寸 （单位 dp or pt）
   /// size unit dp or pt
@@ -143,11 +145,12 @@ class ScreenUtil {
     return size * getScreenH(context) / _designH;
   }
 
+  /// 仅支持纵屏。
   /// returns the font size after adaptation according to the screen density.
   /// 返回根据屏幕宽适配后字体尺寸
   /// fontSize 字体尺寸
   static double getScaleSp(BuildContext context, double fontSize) {
-    if (context == null || getScreenDensity(context) == 0.0) return fontSize;
+    if (context == null || getScreenW(context) == 0.0) return fontSize;
     return fontSize * getScreenW(context) / _designW;
   }
 
@@ -158,6 +161,7 @@ class ScreenUtil {
     return mediaQuery.orientation;
   }
 
+  /// 仅支持纵屏。
   /// returns the size after adaptation according to the screen width.(unit dp or pt)
   /// 返回根据屏幕宽适配后尺寸（单位 dp or pt）
   /// size 单位 dp or pt
@@ -165,6 +169,7 @@ class ScreenUtil {
     return _screenWidth == 0.0 ? size : (size * _screenWidth / _designW);
   }
 
+  /// 仅支持纵屏。
   /// returns the size after adaptation according to the screen height.(unit dp or pt)
   /// 返回根据屏幕高适配后尺寸（单位 dp or pt）
   /// size unit dp or pt
@@ -172,6 +177,7 @@ class ScreenUtil {
     return _screenHeight == 0.0 ? size : (size * _screenHeight / _designH);
   }
 
+  /// 仅支持纵屏
   /// returns the size after adaptation according to the screen width.(unit dp or pt)
   /// 返回根据屏幕宽适配后尺寸（单位 dp or pt）
   /// sizePx unit px
@@ -181,6 +187,7 @@ class ScreenUtil {
         : (sizePx * _screenWidth / (_designW * _designD));
   }
 
+  /// 仅支持纵屏。
   /// returns the size after adaptation according to the screen height.(unit dp or pt)
   /// 返回根据屏幕高适配后尺寸（单位 dp or pt）
   /// sizePx unit px
@@ -190,11 +197,43 @@ class ScreenUtil {
         : (sizePx * _screenHeight / (_designH * _designD));
   }
 
+  /// 仅支持纵屏。
   /// returns the font size after adaptation according to the screen density.
   /// 返回根据屏幕宽适配后字体尺寸
   /// fontSize 字体尺寸
   double getSp(double fontSize) {
     if (_screenDensity == 0.0) return fontSize;
     return fontSize * _screenWidth / _designW;
+  }
+
+  /// 兼容横/纵屏。
+  /// 获取适配后的尺寸，兼容横/纵屏切换，可用于宽，高，字体尺寸适配。
+  /// Get the appropriate size, compatible with horizontal/vertical screen switching, can be used for wide, high, font size adaptation.
+  double getAdapterSize(double dp) {
+    if (_screenWidth == 0 || _screenHeight == 0) return dp;
+    return getRatio() * dp;
+  }
+
+  /// 适配比率。
+  /// Ratio.
+  double getRatio() {
+    return (_screenWidth > _screenHeight ? _screenHeight : _screenWidth) /
+        _designW;
+  }
+
+  /// 兼容横/纵屏。
+  /// 获取适配后的尺寸，兼容横/纵屏切换，适应宽，高，字体尺寸。
+  /// Get the appropriate size, compatible with horizontal/vertical screen switching, can be used for wide, high, font size adaptation.
+  static double getAdapterSizeCtx(BuildContext context, double dp) {
+    Size size = MediaQuery.of(context).size;
+    if (size == Size.zero) return dp;
+    return getRatioCtx(context) * dp;
+  }
+
+  /// 适配比率。
+  /// Ratio.
+  static double getRatioCtx(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return (size.width > size.height ? size.height : size.width) / _designW;
   }
 }

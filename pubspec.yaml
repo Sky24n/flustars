@@ -1,6 +1,6 @@
 name: flustars
 description: Flutter common utils library. SpUtil, ScreenUtil, WidgetUtil. SharedPreferences Util. Screen info & Screen adaptation. get image size.
-version: 0.2.5+1
+version: 0.2.6
 author: thl <863764940@qq.com>
 homepage: https://github.com/Sky24n/flustars
 
@@ -10,7 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
+  common_utils: '>=1.1.0 <3.0.0'
   # https://github.com/tekartik/synchronized.dart
   synchronized: '>=0.1.0 <3.0.0'
   # https://github.com/flutter/plugins/tree/master/packages/shared_preferences
-  shared_preferences: '>=0.1.1 <2.0.0'
+  shared_preferences: '>=0.1.1 <3.0.0'
+  # https://github.com/flutter/plugins/tree/master/packages/path_provider
+  path_provider: '>=0.4.0 <3.0.0'

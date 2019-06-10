@@ -1,7 +1,7 @@
 # flustars(Flutter常用工具类库)
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)
 
-## 主要对第三方库封装，以便于使用。如果你有好的工具类欢迎PR. 
+## flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家提供简单易用工具类。如果你有好的工具类欢迎PR. 
 目前包含SharedPreferences Util, Screen Util, Widget Util。
 
 ### 关于使用本开源库规则
@@ -20,6 +20,9 @@ import 'package:flustars/flustars.dart';
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
+
+
+
 
 🔥🔥🔥Flutter全局屏幕适配[auto_size](https://github.com/flutterchina/auto_size),欢迎使用～  
   
@@ -329,6 +332,15 @@ getBottomBarH(ctx)        : 当前BottomBar高度.
 getScaleW(ctx,size)       : 返回根据屏幕宽适配后尺寸.
 getScaleH(ctx,size)       : 返回根据屏幕高适配后尺寸.
 getScaleSp(ctx,size)      : 返回根据屏幕宽适配后字体尺寸.  
+getScaleSp(ctx,size)      : 返回根据屏幕宽适配后字体尺寸.  
+
+///旧适配方法仅适用于纵屏适配。
+///推荐使用以下新适配方法。
+getAdapterSize(size)             : 返回适配后尺寸，可用于宽，高，字体尺寸.  
+getAdapterSizeCtx(ctx,size)      : 返回适配后尺寸，可用于宽，高，字体尺寸.   
+
+double adapterSize = ScreenUtil.getInstance().getAdapterSize(100);
+double adapterSize = ScreenUtil.getAdapterSizeCtx(context, 100);
   
 一、不依赖context
 // 屏幕宽

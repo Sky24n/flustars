@@ -1,3 +1,7 @@
+### 0.2.6
+
+* TODO: xxx.
+
 ### 0.2.5+1
 
 * TODO: fix WidgetUtil error with flutter v1.6.3.
