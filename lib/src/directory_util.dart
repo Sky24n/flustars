@@ -74,7 +74,7 @@ class DirectoryUtil {
 
   DirectoryUtil._();
 
-  void _init() async {
+  Future _init() async {
     if (_initTempDir) {
       await initTempDir();
     }
@@ -86,26 +86,27 @@ class DirectoryUtil {
     }
   }
 
-  static void initTempDir() async {
+  static Future initTempDir() async {
     if (_tempDir == null) {
       _tempDir = await getTemporaryDirectory();
     }
   }
 
-  static void initAppDocDir() async {
+  static Future initAppDocDir() async {
     if (_appDocDir == null) {
       _appDocDir = await getApplicationDocumentsDirectory();
     }
   }
 
-  static void initStorageDir() async {
+  static Future initStorageDir() async {
     if (_storageDir == null) {
       if (Platform.isAndroid) {
         _storageDir = await getExternalStorageDirectory();
       }
-      if (Platform.isIOS) {
-        _storageDir = await getApplicationSupportDirectory();
-      }
+// 考虑旧版兼容问题，暂时屏蔽。该方法在v1.1.0才有。
+//      if (Platform.isIOS) {
+//        _storageDir = await getApplicationSupportDirectory();
+//      }
     }
   }
 

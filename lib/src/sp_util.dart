@@ -36,7 +36,7 @@ class SpUtil {
 
   SpUtil._();
 
-  void _init() async {
+  Future _init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 

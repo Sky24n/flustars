@@ -1,3 +1,7 @@
+### 0.2.6+1
+
+* TODO: fix path_provider compatible.
+
 ### 0.2.6
 
 * TODO: dependencies common_utils ，new DirectoryUtil, SpUtil add getObj，getObjList, ScreenUtil add getAdapterSize, getAdapterSizeCtx.

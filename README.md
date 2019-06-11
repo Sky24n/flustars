@@ -14,7 +14,7 @@ flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/
 ### 使用方式：
 ```dart
 dependencies:
-  flustars: ^0.2.6
+  flustars: ^0.2.6+1
   
 import 'package:flustars/flustars.dart';  
 ```
