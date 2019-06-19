@@ -19,6 +19,18 @@ dependencies:
 import 'package:flustars/flustars.dart';  
 ```
 
+### 注意
+本库基于Flutter beta 分支开发。如不是该版本，请自行升级！
+```dart
+[✓] Flutter (Channel beta, v1.6.3, locale zh-Hans-CN)
+  
+//切换到flutter beta分支
+flutter channel beta
+  
+//升级
+flutter upgrade
+```
+
 ## [更新说明](./doc/UPDATELOG.md)
 🔥🔥🔥Flutter全局屏幕适配[auto_size](https://github.com/flutterchina/auto_size),欢迎使用～   
   
@@ -37,7 +49,7 @@ Directory dir = DirectoryUtil.createTempDirSync(package: 'doc', category: 'image
 2.SpUtil全面支持读取对象，对象列表。
 ```dart  
 City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));  
-List<City> dataList = SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
+List<City> _cityList = SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
 ```   
 
 3.ScreenUtil 兼容横/纵屏适配。
@@ -324,8 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
     city.name = "成都市";
     SpUtil.putObject("loc_city", city);
     
-    Map dataMap = SpUtil.getObject("loc_city");
-    City hisCity = dataMap == null ? null : City.fromJson(dataMap);
+    City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));
     print("City: " + (hisCity == null ? "null" : hisCity.toString()));
     
     /// save object list example.
@@ -335,11 +346,7 @@ class _MyHomePageState extends State<MyHomePage> {
     list.add(new City(name: "北京市"));
     SpUtil.putObjectList("loc_city_list", list);
     
-    List<Map> dataMapList = SpUtil.getObjectList("loc_city_list");
-    List<City> _cityList = dataMapList?.map((value) {
-      return City.fromJson(value);
-    })?.toList();
-    
+    List<City> _cityList = SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
     print("City list: " + (_cityList == null ? "null" : _cityList.toString()));
   }
   
