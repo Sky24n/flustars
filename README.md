@@ -5,11 +5,9 @@ flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/
 目前包含SharedPreferences Util, Screen Util, Directory Util, Widget Util。
 
 ### 关于使用本开源库规则
-如果您是用于公司项目，请随意使用～  
-
-如果您是用于个人开源项目，未经本人许可，请勿copy源码到您的项目使用！ 
-如果大家都copy源码到自己项目中使用，而不去使用pub库，那作者也就没有必要继续更新及维护本项目！  
-希望大家且行且珍惜~
+#### 如果您是用于公司项目，请随意使用～  
+#### 如果您是用于开源项目，未经本人许可，请勿将copy源码到您的项目使用！  
+#### 如有使用，请勿删除源代码中作者信息！！！
 
 ### 使用方式：
 ```dart
@@ -32,7 +30,25 @@ flutter upgrade
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
-🔥🔥🔥Flutter全局屏幕适配[auto_size](https://github.com/flutterchina/auto_size),欢迎使用～   
+[common_utils](https://github.com/Sky24n/common_utils)相关更新。。。  
+v1.1.3 (2019.07.10)  
+1、新增TextUtil 银行卡号每隔4位加空格，每隔3三位加逗号，隐藏手机号等等.  
+2、新增EnDecodeUtil md5加密，Base64加/解密.  
+3、DateUtil 新增日期格式化，支持自定义格式输出。  
+4、LogUtil 支持输出超长log。  
+5、RegexUtil 支持199号段。  
+```dart 
+/// DateUtil
+DateUtil.formatDateMs(DateTime.now().millisecondsSinceEpoch, format: DataFormats.full); // 2019-07-09 16:51:14
+DateUtil.formatDateStr("2019-07-09 16:51:14", format: "yyyy/M/d HH:mm:ss"); // 2019/7/9 16:51:14
+DateUtil.formatDate(DateTime.now(), format: "yyyy/MM/dd HH:mm:ss");  // 2019/07/09 16:51:14
+  
+/// TextUtil
+String phoneNo = TextUtil.formatSpace4("15845678910"); // 1584 5678 910
+String num     = TextUtil.formatComma3("12345678"); // 12,345,678
+String phoneNo = TextUtil.hideNumber("15845678910")// 158****8910
+```
+
   
 v0.2.6 (2019.06.11)  
 1.新增文件目录工具类

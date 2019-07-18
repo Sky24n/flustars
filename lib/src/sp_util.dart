@@ -11,6 +11,7 @@ import 'package:synchronized/synchronized.dart';
  * @Email: sky24no@gmail.com
  * @Date: 2018/9/8
  * @Description: Sp Util.
+ * 请勿删除作者个人信息！谢谢！
  */
 
 /// SharedPreferences Util.
