@@ -1,3 +1,7 @@
+### 0.2.6+2
+
+* TODO: fix minimum version dependency.
+
 ### 0.2.6+1
 
 * TODO: fix path_provider compatible.

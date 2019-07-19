@@ -30,7 +30,10 @@ flutter upgrade
 ```
 
 ## [更新说明](./doc/UPDATELOG.md)
-[common_utils](https://github.com/Sky24n/common_utils)相关更新。。。  
+[common_utils](https://github.com/Sky24n/common_utils)新版本v1.1.3。  
+如果项目中使用了 flustars: ^0.2.6及以上版本。  
+删除pubspec.lock文件，直接运行flutter  packages get 即可使用最新版！  
+
 v1.1.3 (2019.07.10)  
 1、新增TextUtil 银行卡号每隔4位加空格，每隔3三位加逗号，隐藏手机号等等.  
 2、新增EnDecodeUtil md5加密，Base64加/解密.  
