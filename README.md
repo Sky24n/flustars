@@ -4,6 +4,9 @@
 flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家分享简单易用工具类。如果你有好的工具类欢迎PR. 
 目前包含SharedPreferences Util, Screen Util, Directory Util, Widget Util。
 
+### 注意：
+由于path_provider库升级，导致Directory路径发生变更，请暂时不要使用，谢谢！！！
+
 ### 使用方式：
 ```dart
 dependencies:
