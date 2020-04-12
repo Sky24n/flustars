@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/widgets.dart';
 
 /**
- * @Author: thl
+ * @Author: Sky24n
  * @GitHub: https://github.com/Sky24n
- * @Email: 863764940@qq.com
  * @Email: sky24no@gmail.com
  * @Description: Widget Util.
  * @Date: 2018/9/10
@@ -72,9 +70,9 @@ class WidgetUtil {
   /// local url , package
   static Future<Rect> getImageWH(
       {Image image, String url, String localUrl, String package}) {
-    if (ObjectUtil.isEmpty(image) &&
-        ObjectUtil.isEmpty(url) &&
-        ObjectUtil.isEmpty(localUrl)) {
+    if (image == null &&
+        (url == null || url.isEmpty) &&
+        (localUrl == null || localUrl.isEmpty)) {
       return Future.value(Rect.zero);
     }
     Completer<Rect> completer = Completer<Rect>();
@@ -105,9 +103,9 @@ class WidgetUtil {
   /// package
   static Future<Rect> getImageWHE(
       {Image image, String url, String localUrl, String package}) {
-    if (ObjectUtil.isEmpty(image) &&
-        ObjectUtil.isEmpty(url) &&
-        ObjectUtil.isEmpty(localUrl)) {
+    if (image == null &&
+        (url == null || url.isEmpty) &&
+        (localUrl == null || localUrl.isEmpty)) {
       return Future.error("image is null.");
     }
     Completer<Rect> completer = Completer<Rect>();

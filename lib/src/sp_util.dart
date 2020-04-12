@@ -5,13 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:synchronized/synchronized.dart';
 
 /**
- * @Author: thl
+ * @Author: Sky24n
  * @GitHub: https://github.com/Sky24n
- * @Email: 863764940@qq.com
  * @Email: sky24no@gmail.com
  * @Date: 2018/9/8
  * @Description: Sp Util.
- * 请勿删除作者个人信息！谢谢！
  */
 
 /// SharedPreferences Util.

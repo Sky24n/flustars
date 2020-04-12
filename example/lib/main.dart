@@ -2,11 +2,11 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => new _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class City {
@@ -24,7 +24,7 @@ class City {
 
   @override
   String toString() {
-    StringBuffer sb = new StringBuffer('{');
+    StringBuffer sb = StringBuffer('{');
     sb.write("\"name\":\"$name\"");
     sb.write('}');
     return sb.toString();
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
 
     /// save object example.
     /// 存储实体对象示例。
-    City city = new City();
+    City city = City();
     city.name = "成都市";
     SpUtil.putObject("loc_city", city);
 
@@ -63,9 +63,9 @@ class _MyAppState extends State<MyApp> {
 
     /// save object list example.
     /// 存储实体对象list示例。
-    List<City> list = new List();
-    list.add(new City(name: "成都市"));
-    list.add(new City(name: "北京市"));
+    List<City> list = List();
+    list.add(City(name: "成都市"));
+    list.add(City(name: "北京市"));
     SpUtil.putObjectList("loc_city_list", list);
 
     List<City> dataList =
@@ -76,8 +76,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new MainPage(),
+    return MaterialApp(
+      home: MainPage(),
     );
   }
 }
@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
 class MainPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new MainPageState();
+    return MainPageState();
   }
 }
 
@@ -94,6 +94,25 @@ class MainPage extends StatefulWidget {
 /// In MainPage, the dependency-free context method is used to obtain screen parameters and adaptions, which requires a call to [MediaQuery. of (context)] within the build method.
 /// Or use context-dependent methods to obtain screen parameters and adaptions.
 class MainPageState extends State<MainPage> {
+  void test2() async {
+    await DirectoryUtil.getInstance();
+    String tempPath = DirectoryUtil.getTempPath(
+        category: 'Pictures', fileName: 'demo', format: 'png');
+    print("thll  tempPath: $tempPath");
+    String appDocPath = DirectoryUtil.getAppDocPath(
+        category: 'Pictures', fileName: 'demo', format: 'png');
+    print("thll  appDocPath: $appDocPath");
+    String appSupportPath = DirectoryUtil.getAppSupportPath(
+        category: 'Pictures', fileName: 'demo', format: 'png');
+    print("thll  appSupportPath: $appSupportPath");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    test2();
+  }
+
   @override
   Widget build(BuildContext context) {
     /// 如果使用依赖不context方法获取屏幕参数及适配，需要调用此方法。
@@ -111,78 +130,76 @@ class MainPageState extends State<MainPage> {
     print(
         "thll  MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc, adapterW: $adapterW");
 
-    return new Scaffold(
+    return Scaffold(
       // 一个不需要GlobalKey就可以openDrawer的AppBar
-      appBar: new MyAppBar(
+      appBar: MyAppBar(
         leading: ClipOval(
-          child: new Image.asset(('assets/images/ali_connors.png')),
+          child: Image.asset(('assets/images/ali_connors.png')),
         ),
         title: const Text('Flustars Demos'),
         centerTitle: true,
         actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.search),
+          IconButton(
+            icon: Icon(Icons.search),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  new CupertinoPageRoute<void>(
-                      builder: (ctx) => new SecondPage()));
+              Navigator.push(context,
+                  CupertinoPageRoute<void>(builder: (ctx) => SecondPage()));
             },
           ),
         ],
       ),
-      body: new Column(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Container(
+          Container(
             width: 360.0,
             height: 50,
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "未适配宽",
-                style: new TextStyle(fontSize: 24.0),
+                style: TextStyle(fontSize: 24.0),
               ),
             ),
           ),
-          new Container(
+          Container(
             width: ScreenUtil.getInstance().getAdapterSize(360.0),
             height: 50,
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "已适配宽",
-                style: new TextStyle(fontSize: 24.0),
+                style: TextStyle(fontSize: 24.0),
               ),
             ),
           ),
-          new Container(
+          Container(
             width: 100,
             height: 100,
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "你好你好你好",
-                style: new TextStyle(fontSize: 24.0),
+                style: TextStyle(fontSize: 24.0),
               ),
             ),
           ),
-          new Container(
+          Container(
             margin: EdgeInsets.only(top: 10.0),
             width: ScreenUtil.getInstance().getAdapterSize(100.0),
             height: ScreenUtil.getInstance().getAdapterSize(100.0),
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "你好你好你好",
-                style: new TextStyle(
+                style: TextStyle(
                     fontSize: ScreenUtil.getInstance().getAdapterSize(24.0)),
               ),
             ),
           ),
         ],
       ),
-      drawer: new MyDrawer(),
+      drawer: MyDrawer(),
     );
   }
 }
@@ -194,22 +211,22 @@ class MyDrawer extends StatelessWidget {
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
     print(
-        " thll  SecondPage statusBar: $statusBar, width: $width, height: $height");
+        " thll  MyDrawer statusBar: $statusBar, width: $width, height: $height");
 
-    return new Container(
+    return Container(
       color: Colors.white,
       width: ScreenUtil.getInstance().getWidth(240),
-      child: new ListView(
+      child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          new Container(
+          Container(
             color: Colors.teal,
             padding:
                 EdgeInsets.only(top: ScreenUtil.getInstance().statusBarHeight),
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "Sky24n",
-                style: new TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
             height: 160,
@@ -223,7 +240,7 @@ class MyDrawer extends StatelessWidget {
 class SecondPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new SecondPageState();
+    return SecondPageState();
   }
 }
 
@@ -232,7 +249,7 @@ class SecondPageState extends State<SecondPage> {
   void initState() {
     super.initState();
     _init();
-    _initWithCtx();
+//    _initWithCtx();
   }
 
   void _init() {
@@ -278,47 +295,47 @@ class SecondPageState extends State<SecondPage> {
     print(
         "thll  SecondPage statusBar: $statusBar, width: $width, height: $height");
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Second Page"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Page"),
         centerTitle: true,
       ),
-      body: new Column(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Container(
+          Container(
             width: 100,
             height: 100,
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "你好你好你好",
-                style: new TextStyle(fontSize: 24.0),
+                style: TextStyle(fontSize: 24.0),
               ),
             ),
           ),
-          new Container(
+          Container(
             margin: EdgeInsets.only(top: 10.0),
             width: ScreenUtil.getInstance().getAdapterSize(100.0),
             height: ScreenUtil.getInstance().getAdapterSize(100.0),
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "你好你好你好",
-                style: new TextStyle(
+                style: TextStyle(
                     fontSize: ScreenUtil.getInstance().getAdapterSize(24.0)),
               ),
             ),
           ),
-          new Container(
+          Container(
             margin: EdgeInsets.only(top: 10.0),
             width: ScreenUtil.getAdapterSizeCtx(context, 100.0),
             height: ScreenUtil.getAdapterSizeCtx(context, 100.0),
             color: Colors.grey,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child: Text(
                 "你好你好你好",
-                style: new TextStyle(
+                style: TextStyle(
                     fontSize: ScreenUtil.getAdapterSizeCtx(context, 24.0)),
               ),
             ),

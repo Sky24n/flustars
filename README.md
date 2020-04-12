@@ -6,13 +6,23 @@ flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/
 
 ### 注意：
 由于path_provider库升级，导致Directory路径发生变更，请暂时不要使用DirectoryUtil，谢谢！！！
+v0.3.0版本package参数已删除！
 
 ### 使用方式：
 ```dart
 dependencies:
   flustars: ^0.2.6+1
   
-import 'package:flustars/flustars.dart';  
+import 'package:flustars/flustars.dart';
+
+
+or
+
+// git (version 0.3.0)
+dependencies:
+  flustars:
+    git:
+      url: git://github.com/Sky24n/flustars.git
 ```
 
 ### 注意

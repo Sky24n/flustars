@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui show window;
 
 /**
- * @Author: thl
+ * @Author: Sky24n
  * @GitHub: https://github.com/Sky24n
- * @Email: 863764940@qq.com
  * @Email: sky24no@gmail.com
  * @Description: Screen Util.
  * @Date: 2018/9/8
