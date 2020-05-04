@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
  * @GitHub: https://github.com/Sky24n
  * @Email: sky24no@gmail.com
  * @Description: Image Util.
- * @Date: 2018/9/10
+ * @Date: 2020/03/10
  */
 
 /// Image Util.
@@ -27,12 +27,10 @@ class ImageUtil {
     String package,
     ImageConfiguration configuration,
   }) {
-    int start = DateTime.now().millisecondsSinceEpoch;
     Completer<Rect> completer = Completer<Rect>();
     _listener = ImageStreamListener(
       (ImageInfo info, bool synchronousCall) {
         int now = DateTime.now().millisecondsSinceEpoch;
-        print("thll ------------[${now - start}]---------------");
         _imageStream.removeListener(_listener);
         if (!completer.isCompleted) {
           completer.complete(Rect.fromLTWH(
@@ -40,8 +38,6 @@ class ImageUtil {
         }
       },
       onError: (dynamic exception, StackTrace stackTrace) {
-        print(
-            "thll ------------[exception]---------------${exception?.toString()}");
         _imageStream.removeListener(_listener);
         if (!completer.isCompleted) {
           completer.completeError(exception, stackTrace);

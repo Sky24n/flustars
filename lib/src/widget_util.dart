@@ -95,16 +95,12 @@ class WidgetUtil {
         .resolve(configuration ?? ImageConfiguration())
         .addListener(ImageStreamListener(
           (ImageInfo info, bool synchronousCall) {
-            print(
-                "thll ImageStreamListener suc...... ${completer.isCompleted}");
             if (!completer.isCompleted) {
               completer.complete(Rect.fromLTWH(0, 0,
                   info.image.width.toDouble(), info.image.height.toDouble()));
             }
           },
           onError: (dynamic exception, StackTrace stackTrace) {
-            print(
-                "thll ImageStreamListener fail...... ${completer.isCompleted}");
             if (!completer.isCompleted) {
               completer.complete(Rect.zero);
             }
@@ -146,14 +142,12 @@ class WidgetUtil {
         .resolve(configuration ?? ImageConfiguration())
         .addListener(ImageStreamListener(
           (ImageInfo info, bool synchronousCall) {
-            print("thll ImageStreamListener suc......");
             if (!completer.isCompleted) {
               completer.complete(Rect.fromLTWH(0, 0,
                   info.image.width.toDouble(), info.image.height.toDouble()));
             }
           },
           onError: (dynamic exception, StackTrace stackTrace) {
-            print("thll ImageStreamListener fail......");
             if (!completer.isCompleted) {
               completer.completeError(exception, stackTrace);
             }
