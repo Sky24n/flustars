@@ -63,13 +63,23 @@ class WidgetUtil {
     return box == null ? Offset.zero : box.localToGlobal(Offset.zero);
   }
 
+  /// Suggest use ImageUtil instead.
+  ///
   /// get image width height，load error return Rect.zero.（unit px）
+  /// Gif is not supported.
   /// 获取图片宽高，加载错误情况返回 Rect.zero.（单位 px）
   /// image
   /// url network
   /// local url , package
-  static Future<Rect> getImageWH(
-      {Image image, String url, String localUrl, String package}) {
+
+  @deprecated
+  static Future<Rect> getImageWH({
+    Image image,
+    String url,
+    String localUrl,
+    String package,
+    ImageConfiguration configuration,
+  }) {
     if (image == null &&
         (url == null || url.isEmpty) &&
         (localUrl == null || localUrl.isEmpty)) {
@@ -82,27 +92,45 @@ class WidgetUtil {
             ? Image.network(url)
             : Image.asset(localUrl, package: package));
     img.image
-        .resolve(new ImageConfiguration())
-        .addListener(new ImageStreamListener(
-          (ImageInfo info, bool _) {
-            completer.complete(Rect.fromLTWH(0, 0, info.image.width.toDouble(),
-                info.image.height.toDouble()));
+        .resolve(configuration ?? ImageConfiguration())
+        .addListener(ImageStreamListener(
+          (ImageInfo info, bool synchronousCall) {
+            print(
+                "thll ImageStreamListener suc...... ${completer.isCompleted}");
+            if (!completer.isCompleted) {
+              completer.complete(Rect.fromLTWH(0, 0,
+                  info.image.width.toDouble(), info.image.height.toDouble()));
+            }
           },
           onError: (dynamic exception, StackTrace stackTrace) {
-            completer.completeError(exception, stackTrace);
+            print(
+                "thll ImageStreamListener fail...... ${completer.isCompleted}");
+            if (!completer.isCompleted) {
+              completer.complete(Rect.zero);
+            }
           },
         ));
     return completer.future;
   }
 
+  /// Suggest use ImageUtil instead.
+  ///
   /// get image width height, load error throw exception.（unit px）
+  /// Gif is not supported.
   /// 获取图片宽高，加载错误会抛出异常.（单位 px）
   /// image
   /// url network
   /// local url (full path/全路径，example："assets/images/ali_connors.png"，""assets/images/3.0x/ali_connors.png"" );
   /// package
-  static Future<Rect> getImageWHE(
-      {Image image, String url, String localUrl, String package}) {
+
+  @deprecated
+  static Future<Rect> getImageWHE({
+    Image image,
+    String url,
+    String localUrl,
+    String package,
+    ImageConfiguration configuration,
+  }) {
     if (image == null &&
         (url == null || url.isEmpty) &&
         (localUrl == null || localUrl.isEmpty)) {
@@ -115,17 +143,22 @@ class WidgetUtil {
             ? Image.network(url)
             : Image.asset(localUrl, package: package));
     img.image
-        .resolve(new ImageConfiguration())
-        .addListener(new ImageStreamListener(
-          (ImageInfo info, bool _) {
-            completer.complete(Rect.fromLTWH(0, 0, info.image.width.toDouble(),
-                info.image.height.toDouble()));
+        .resolve(configuration ?? ImageConfiguration())
+        .addListener(ImageStreamListener(
+          (ImageInfo info, bool synchronousCall) {
+            print("thll ImageStreamListener suc......");
+            if (!completer.isCompleted) {
+              completer.complete(Rect.fromLTWH(0, 0,
+                  info.image.width.toDouble(), info.image.height.toDouble()));
+            }
           },
           onError: (dynamic exception, StackTrace stackTrace) {
-            completer.completeError(exception, stackTrace);
+            print("thll ImageStreamListener fail......");
+            if (!completer.isCompleted) {
+              completer.completeError(exception, stackTrace);
+            }
           },
         ));
-
     return completer.future;
   }
 }

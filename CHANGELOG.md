@@ -1,3 +1,7 @@
+### 0.3.0
+
+* TODO: add ImageUtil, Refactor DirectoryUtil.
+
 ### 0.2.6+2
 
 * TODO: fix minimum version dependency.

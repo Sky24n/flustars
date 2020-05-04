@@ -1,16 +1,17 @@
-Language: [English](README-EN.md) | 中文简体
+Language: English | [中文简体](https://github.com/Sky24n/flustars)
 
-# flustars(Flutter常用工具类库)
+# flustars(Flutter common utils library)
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)  
 
-flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家分享简单易用工具类。如果你有好的工具类欢迎PR.
-目前包含SharedPreferences Util, Screen Util, Directory Util, Widget Util, Image Util。
+Flutter common utils library, SharedPreferences Util, Screen Util, Directory Util, Widget Util, Image Util。If you have good tools, welcome PR.
 
 Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
 
 [✓] Flutter (Channel stable, v1.12.13+hotfix.9, locale zh-Hans-CN)
 
-### 使用方式：
+## Get started
+
+### Add dependency
 ```yaml
 dependencies:
   flustars: ^0.3.0
@@ -29,25 +30,24 @@ dependencies:
 ### [Change Log](CHANGE_LOG.md)
 
 v0.3.0
-新增ImageUtil。
+add ImageUtil。
 
+### Flutter common util library [flustars][flustars_github]
+ 1、SpUtil       : SharedPreferences util, support save object, object list.  
+ 2、ScreenUtil   : adapter size，screen size.  
+ 3、WidgetUtil   : Widget rendering listener，get Widget Bounds.  
+ 4、DioUtil      : dio util move to [DioUtil](https://github.com/Sky24n/FlutterRepos/blob/master/base_library/lib/src/data/net/dio_util.dart)。  
+ 5、ImageUtil    : get image size.
 
-### [Flutter工具类库 flustars][flustars_github]
- 1、SpUtil       : 单例"同步"SharedPreferences工具类。支持get传入默认值，支持存储对象，支持存储对象数组。  
- 2、ScreenUtil   : 屏幕适配，获取屏幕宽、高、密度，AppBar高，状态栏高度，屏幕方向.  
- 3、WidgetUtil   : 监听Widget渲染状态，获取Widget宽高，在屏幕上的坐标，获取网络/本地图片尺寸.  
- 4、DioUtil      : 单例Dio网络工具类(已迁移至此处[DioUtil](https://github.com/Sky24n/flutter_wanandroid/blob/master/lib/data/net/dio_util.dart))。
- 5、ImageUtil    : 获取网络/本地图片尺寸.
-
-### [Dart常用工具类库 common_utils][common_utils_github]  
- 1、TimelineUtil : 时间轴.(新)  
- 2、TimerUtil    : 倒计时，定时任务.(新)  
- 3、MoneyUtil    : 精确转换，元转分，分转元，支持格式输出.(新)  
- 4、LogUtil      : 简单封装打印日志.(新)  
- 5、DateUtil     : 日期转换格式化输出.  
- 6、RegexUtil    : 正则验证手机号，身份证，邮箱等等.  
- 7、NumUtil      : 保留x位小数, 精确加、减、乘、除, 防止精度丢失.  
- 8、ObjectUtil   : 判断对象是否为空(String List Map),判断两个List是否相等.  
+### Dart common util library [common_utils][common_utils_github]
+ 1、TimelineUtil : timeline util.  
+ 2、TimerUtil    : timer util.  
+ 3、MoneyUtil    : money util.  
+ 4、LogUtil      : log util.  
+ 5、DateUtil     : date util.  
+ 6、RegexUtil    : regex util, mobile, email, date.
+ 7、NumUtil      : num util.  
+ 8、ObjectUtil   : object util.
  9、TextUtil     : TextUtil.  
  10、EncryptUtil : EncryptUtil.  
  11、JsonUtil    : JsonUtil.

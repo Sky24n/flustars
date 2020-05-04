@@ -26,10 +26,10 @@ import 'package:synchronized/synchronized.dart';
 /// 在iOS上，这个函数抛出一个[UnsupportedError]，因为它不可能访问应用程序的沙箱之外。
 /// 在Android上，它使用`getExternalFilesDir（null）`。
 
-bool _initTempDir = true;
-bool _initAppDocDir = true;
-bool _initAppSupportDir = true;
-bool _initStorageDir = true;
+bool _initTempDir = false;
+bool _initAppDocDir = false;
+bool _initAppSupportDir = false;
+bool _initStorageDir = false;
 
 /// 配置初始化Directory。
 void setInitDir({
@@ -81,6 +81,7 @@ class DirectoryUtil {
   DirectoryUtil._();
 
   Future _init() async {
+    int old = DateTime.now().millisecondsSinceEpoch;
     if (_initTempDir) {
       await initTempDir();
     }
@@ -93,6 +94,8 @@ class DirectoryUtil {
     if (_initStorageDir) {
       await initStorageDir();
     }
+    print(
+        "thll DirectoryUtil init : ${DateTime.now().millisecondsSinceEpoch - old}");
   }
 
   static Future<Directory> initTempDir() async {

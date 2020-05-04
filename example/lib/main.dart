@@ -95,22 +95,39 @@ class MainPage extends StatefulWidget {
 /// Or use context-dependent methods to obtain screen parameters and adaptions.
 class MainPageState extends State<MainPage> {
   void test2() async {
+    print("thll xxxxxxxxxxx test7......");
     await DirectoryUtil.getInstance();
     String tempPath = DirectoryUtil.getTempPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     print("thll  tempPath: $tempPath");
+
     String appDocPath = DirectoryUtil.getAppDocPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     print("thll  appDocPath: $appDocPath");
+
     String appSupportPath = DirectoryUtil.getAppSupportPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     print("thll  appSupportPath: $appSupportPath");
+
+    String storagePath = DirectoryUtil.getStoragePath(
+        category: 'Pictures', fileName: 'demo', format: 'png');
+    print("thll  storagePath: $storagePath");
   }
 
   @override
   void initState() {
     super.initState();
     test2();
+  }
+
+  void test() async {
+    String _src =
+        "https://dsd361-oss1.oss-cn-beijing.aliyuncs.com/upload/advert/2d56ad78-472d-4eaf-b1f1-9a6887089d17.gif";
+
+    Rect rect2 = await WidgetUtil.getImageWH(url: _src);
+
+//    ImageUtil imageUtil = ImageUtil();
+//    imageUtil.getImageWH().then((Rect rect) {});
   }
 
   @override
@@ -142,8 +159,11 @@ class MainPageState extends State<MainPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              Navigator.push(context,
-                  CupertinoPageRoute<void>(builder: (ctx) => SecondPage()));
+              print("thll onPressed......");
+              //test2();
+              test();
+//              Navigator.push(context,
+//                  CupertinoPageRoute<void>(builder: (ctx) => SecondPage()));
             },
           ),
         ],
