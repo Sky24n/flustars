@@ -30,7 +30,6 @@ class ImageUtil {
     Completer<Rect> completer = Completer<Rect>();
     _listener = ImageStreamListener(
       (ImageInfo info, bool synchronousCall) {
-        int now = DateTime.now().millisecondsSinceEpoch;
         _imageStream.removeListener(_listener);
         if (!completer.isCompleted) {
           completer.complete(Rect.fromLTWH(

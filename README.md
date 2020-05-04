@@ -13,13 +13,13 @@ Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: ^0.3.0
+  flustars: ^0.3.1
   
 import 'package:flustars/flustars.dart';
 
 or
 
-// git (version 0.3.0)
+// git (version 0.3.1)
 dependencies:
   flustars:
     git:

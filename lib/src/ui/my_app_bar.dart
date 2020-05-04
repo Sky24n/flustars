@@ -531,6 +531,17 @@ class _MyAppBarState extends State<MyAppBar> {
       ),
     );
     if (widget.bottom != null) {
+      Widget _widgetBottom;
+      if (widget.bottomOpacity == 1.0) {
+        _widgetBottom = widget.bottom;
+      } else {
+        _widgetBottom = Opacity(
+          opacity: const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
+              .transform(widget.bottomOpacity),
+          child: widget.bottom,
+        );
+      }
+
       appBar = Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -540,14 +551,7 @@ class _MyAppBarState extends State<MyAppBar> {
               child: appBar,
             ),
           ),
-          if (widget.bottomOpacity == 1.0)
-            widget.bottom
-          else
-            Opacity(
-              opacity: const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
-                  .transform(widget.bottomOpacity),
-              child: widget.bottom,
-            ),
+          _widgetBottom,
         ],
       );
     }
