@@ -3,7 +3,7 @@ Language: [English](README-EN.md) | 中文简体
 # flustars(Flutter常用工具类库)
 [![Pub](https://img.shields.io/pub/v/flustars.svg?style=flat-square)](https://pub.dartlang.org/packages/flustars)  
 
-flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家分享简单易用工具类。如果你有好的工具类欢迎PR.
+flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家分享简单易用工具类。如果你有好的工具类欢迎PR.  
 目前包含SharedPreferences Util, Screen Util, Directory Util, Widget Util, Image Util。
 
 Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
@@ -28,13 +28,13 @@ dependencies:
 
 ### [Change Log](CHANGE_LOG.md)
 
-[common_utils](https://github.com/Sky24n/common_utils)新版本v1.2.0。
-如果项目中使用了 flustars: ^0.2.6及以上版本。
-删除pubspec.lock文件，直接运行flutter  packages get 即可使用最新版！
-
-common_utils v1.2.0 (未发布)
-1、新增JsonUtil。
-2、新增EncryptUtil 简单加解密。
+[common_utils](https://github.com/Sky24n/common_utils)新版本v1.2.0。  
+如果项目中使用了 flustars: ^0.2.6及以上版本。  
+删除pubspec.lock文件，直接运行flutter  packages get 即可使用最新版！  
+  
+common_utils v1.2.0 (未发布)  
+1、新增JsonUtil。  
+2、新增EncryptUtil 简单加解密。  
 3、LogUtil 更新。
 ```yaml
 String objStr = "{\"name\":\"成都市\"}";
