@@ -146,13 +146,18 @@ class MainPageState extends State<MainPage> {
 
     print(
         "thll  MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc, adapterW: $adapterW");
-
     return Scaffold(
       // 一个不需要GlobalKey就可以openDrawer的AppBar
-      appBar: MyAppBar(
-        leading: ClipOval(
-          child: Image.asset(('assets/images/ali_connors.png')),
-        ),
+      appBar: AppBar(
+        leading: Builder(builder: (BuildContext ctx) {
+          return IconButton(
+              icon: ClipOval(
+                child: Image.asset(('assets/images/ali_connors.png')),
+              ),
+              onPressed: () {
+                Scaffold.of(ctx).openDrawer();
+              });
+        }),
         title: const Text('Flustars Demos'),
         centerTitle: true,
         actions: <Widget>[

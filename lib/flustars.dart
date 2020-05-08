@@ -2,8 +2,6 @@ library flustars;
 
 export 'package:common_utils/common_utils.dart';
 
-export 'src/ui/my_app_bar.dart';
-
 export 'src/directory_util.dart';
 export 'src/image_util.dart';
 export 'src/screen_util.dart';

@@ -71,8 +71,6 @@ class WidgetUtil {
   /// image
   /// url network
   /// local url , package
-
-  @deprecated
   static Future<Rect> getImageWH({
     Image image,
     String url,
@@ -118,8 +116,6 @@ class WidgetUtil {
   /// url network
   /// local url (full path/全路径，example："assets/images/ali_connors.png"，""assets/images/3.0x/ali_connors.png"" );
   /// package
-
-  @deprecated
   static Future<Rect> getImageWHE({
     Image image,
     String url,

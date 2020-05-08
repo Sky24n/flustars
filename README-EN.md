@@ -7,20 +7,20 @@ Flutter common utils library, SharedPreferences Util, Screen Util, Directory Uti
 
 Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
 
-[✓] Flutter (Channel stable, v1.12.13+hotfix.9, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, v1.17.0, locale zh-Hans-CN)
 
 ## Get started
 
 ### Add dependency
 ```yaml
 dependencies:
-  flustars: ^0.3.1
+  flustars: ^0.3.2
   
 import 'package:flustars/flustars.dart';
 
 or
 
-// git (version 0.3.1)
+// git (version 0.3.2)
 dependencies:
   flustars:
     git:
@@ -29,8 +29,20 @@ dependencies:
 
 ### [Change Log](CHANGE_LOG.md)
 
+v0.3.2
+remove MyAppBar。
+
 v0.3.0
 add ImageUtil。
+DirectoryUtil change
+```dart
+bool _initTempDir = false;
+bool _initAppDocDir = false;
+bool _initAppSupportDir = false;
+bool _initStorageDir = false;
+
+remove package parm.
+```
 
 ### Flutter common util library [flustars][flustars_github]
  1、SpUtil       : SharedPreferences util, support save object, object list.  

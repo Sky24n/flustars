@@ -8,18 +8,18 @@ flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/
 
 Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
 
-[✓] Flutter (Channel stable, v1.12.13+hotfix.9, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, v1.17.0, locale zh-Hans-CN)
 
 ### 使用方式：
 ```yaml
 dependencies:
-  flustars: ^0.3.1
+  flustars: ^0.3.2
   
 import 'package:flustars/flustars.dart';
 
 or
 
-// git (version 0.3.1)
+// git (version 0.3.2)
 dependencies:
   flustars:
     git:
@@ -28,9 +28,47 @@ dependencies:
 
 ### [Change Log](CHANGE_LOG.md)
 
+[common_utils](https://github.com/Sky24n/common_utils)新版本v1.2.0。
+如果项目中使用了 flustars: ^0.2.6及以上版本。
+删除pubspec.lock文件，直接运行flutter  packages get 即可使用最新版！
+
+common_utils v1.2.0 (未发布)
+1、新增JsonUtil。
+2、新增EncryptUtil 简单加解密。
+3、LogUtil 更新。
+```yaml
+String objStr = "{\"name\":\"成都市\"}";
+City hisCity = JsonUtil.getObj(objStr, (v) => City.fromJson(v));
+String listStr = "[{\"name\":\"成都市\"}, {\"name\":\"北京市\"}]";
+List<City> cityList = JsonUtil.getObjList(listStr, (v) => City.fromJson(v));
+
+const String key = '11, 22, 33, 44, 55, 66';
+String value = 'Sky24n';
+String encode = EncryptUtil.xorBase64Encode(value, key); // WH1YHgMs
+String decode = EncryptUtil.xorBase64Decode(encode, key); // Sky24n
+
+//超长log查看
+common_utils e  — — — — — — — — — — — — — — — — st — — — — — — — — — — — — — — — —
+common_utils e | 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,
+common_utils e | 7,988,989,990,991,992,993,994,995,996,997,998,999,
+common_utils e  — — — — — — — — — — — — — — — — ed — — — — — — — — — — — — — — — —
+```
+
+v0.3.2
+remove MyAppBar。
+
 v0.3.0
 新增ImageUtil。
 
+DirectoryUtil 改变
+```dart
+bool _initTempDir = false;
+bool _initAppDocDir = false;
+bool _initAppSupportDir = false;
+bool _initStorageDir = false;
+
+移除package参数
+```
 
 ### [Flutter工具类库 flustars][flustars_github]
  1、SpUtil       : 单例"同步"SharedPreferences工具类。支持get传入默认值，支持存储对象，支持存储对象数组。  

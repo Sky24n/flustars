@@ -1,4 +1,7 @@
-## [更新说明](doc/UPDATELOG.md)
+# 更新日志
+
+v0.3.2
+remove MyAppBar。
 
 v0.3.0
 新增ImageUtil。

@@ -1,30 +1,34 @@
-### 0.3.1
+## 0.3.2
+
+* TODO: remove MyAppBar.
+
+## 0.3.1
 
 * TODO: add ImageUtil, Refactor DirectoryUtil.
 
-### 0.2.6+2
+## 0.2.6+2
 
 * TODO: fix minimum version dependency.
 
-### 0.2.6+1
+## 0.2.6+1
 
 * TODO: fix path_provider compatible.
 
-### 0.2.6
+## 0.2.6
 
 * TODO: dependencies common_utils ，new DirectoryUtil, SpUtil add getObj，getObjList, ScreenUtil add getAdapterSize, getAdapterSizeCtx.
 
-### 0.2.5+1
+## 0.2.5+1
 
 * TODO: fix WidgetUtil error with flutter v1.6.3.
 
-### 0.2.5
+## 0.2.5
 
 * TODO: WidgetUtil add getImageWH(x,x,x,x).
 
-### 0.2.4
+## 0.2.4
 
-* TODO: synchronized : '>=0.1.0 <3.0.0' , shared_preferences : '>=0.1.1 <1.0.0' .
+* TODO: synchronized : >=0.1.0 - 3.0.0 shared_preferences >= 0.1.1 - 1.0.0
 
 ## 0.2.3
 
