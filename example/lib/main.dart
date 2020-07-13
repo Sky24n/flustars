@@ -9,28 +9,6 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class City {
-  String name;
-
-  City({this.name});
-
-  /// must.
-  City.fromJson(Map<String, dynamic> json) : name = json['name'];
-
-  /// must.
-  Map<String, dynamic> toJson() => {
-        'name': name,
-      };
-
-  @override
-  String toString() {
-    StringBuffer sb = StringBuffer('{');
-    sb.write("\"name\":\"$name\"");
-    sb.write('}');
-    return sb.toString();
-  }
-}
-
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
@@ -50,7 +28,7 @@ class _MyAppState extends State<MyApp> {
 
     SpUtil.putString("username", "sky24");
     String userName = SpUtil.getString("username", defValue: "");
-    print("thll userName: " + userName);
+    LogUtil.e("userName: " + userName);
 
     /// save object example.
     /// 存储实体对象示例。
@@ -59,7 +37,7 @@ class _MyAppState extends State<MyApp> {
     SpUtil.putObject("loc_city", city);
 
     City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));
-    print("thll City: " + (hisCity == null ? "null" : hisCity.toString()));
+    LogUtil.e("City: " + (hisCity == null ? "null" : hisCity.toString()));
 
     /// save object list example.
     /// 存储实体对象list示例。
@@ -70,8 +48,7 @@ class _MyAppState extends State<MyApp> {
 
     List<City> dataList =
         SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
-    print(
-        "thll CityList: " + (dataList == null ? "null" : dataList.toString()));
+    LogUtil.e("CityList: " + (dataList == null ? "null" : dataList.toString()));
   }
 
   @override
@@ -95,39 +72,28 @@ class MainPage extends StatefulWidget {
 /// Or use context-dependent methods to obtain screen parameters and adaptions.
 class MainPageState extends State<MainPage> {
   void test2() async {
-    print("thll xxxxxxxxxxx test7......");
+    LogUtil.e("xxxxxxxxxxx test7......");
     await DirectoryUtil.getInstance();
     String tempPath = DirectoryUtil.getTempPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
-    print("thll  tempPath: $tempPath");
+    LogUtil.e("tempPath: $tempPath");
 
     String appDocPath = DirectoryUtil.getAppDocPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
-    print("thll  appDocPath: $appDocPath");
+    LogUtil.e("appDocPath: $appDocPath");
 
     String appSupportPath = DirectoryUtil.getAppSupportPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
-    print("thll  appSupportPath: $appSupportPath");
+    LogUtil.e("appSupportPath: $appSupportPath");
 
     String storagePath = DirectoryUtil.getStoragePath(
         category: 'Pictures', fileName: 'demo', format: 'png');
-    print("thll  storagePath: $storagePath");
+    LogUtil.e("storagePath: $storagePath");
   }
 
   @override
   void initState() {
     super.initState();
-    test2();
-  }
-
-  void test() async {
-    String _src =
-        "https://dsd361-oss1.oss-cn-beijing.aliyuncs.com/upload/advert/2d56ad78-472d-4eaf-b1f1-9a6887089d17.gif";
-
-    Rect rect2 = await WidgetUtil.getImageWH(url: _src);
-
-//    ImageUtil imageUtil = ImageUtil();
-//    imageUtil.getImageWH().then((Rect rect) {});
   }
 
   @override
@@ -144,8 +110,8 @@ class MainPageState extends State<MainPage> {
     double spc = ScreenUtil.getInstance().getAdapterSize(24);
     double adapterW = ScreenUtil.getInstance().getAdapterSize(360);
 
-    print(
-        "thll  MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc, adapterW: $adapterW");
+    LogUtil.e(
+        "MainPage statusBar: $statusBar, width: $width, height: $height, density: $density, sp: $sp, spc: $spc, adapterW: $adapterW");
     return Scaffold(
       // 一个不需要GlobalKey就可以openDrawer的AppBar
       appBar: AppBar(
@@ -164,9 +130,8 @@ class MainPageState extends State<MainPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              print("thll onPressed......");
+              LogUtil.e("onPressed......");
               //test2();
-              test();
 //              Navigator.push(context,
 //                  CupertinoPageRoute<void>(builder: (ctx) => SecondPage()));
             },
@@ -235,8 +200,7 @@ class MyDrawer extends StatelessWidget {
     double statusBar = ScreenUtil.getInstance().statusBarHeight;
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
-    print(
-        " thll  MyDrawer statusBar: $statusBar, width: $width, height: $height");
+    LogUtil.e("MyDrawer statusBar: $statusBar, width: $width, height: $height");
 
     return Container(
       color: Colors.white,
@@ -290,7 +254,7 @@ class SecondPageState extends State<SecondPage> {
     double adapterW100px = ScreenUtil.getInstance().getWidthPx(300);
     double adapterH100px = ScreenUtil.getInstance().getHeightPx(300);
 
-    print("thll  SecondPage _init screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
+    LogUtil.e("SecondPage _init screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
         ", statusBarHeight: $statusBarHeight, bottomBarHeight: $bottomBarHeight, appBarHeight: $appBarHeight" +
         ", adapterW100: $adapterW100, adapterH100: $adapterH100, adapterSp100: $adapterSp100" +
         ", adapterW100px: $adapterW100px, adapterH100px: $adapterH100px");
@@ -307,7 +271,7 @@ class SecondPageState extends State<SecondPage> {
     double adapterSp100 = ScreenUtil.getScaleSp(context, 100);
     Orientation orientation = ScreenUtil.getOrientation(context);
 
-    print("thll  SecondPage _initWithCtx screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
+    LogUtil.e("SecondPage _initWithCtx screenWidth: $screenWidth, screenHeight: $screenHeight, screenDensity: $screenDensity" +
         ", statusBarHeight: $statusBarHeight, bottomBarHeight: $bottomBarHeight" +
         ", adapterW100: $adapterW100, adapterH100: $adapterH100, adapterSp100: $adapterSp100");
   }
@@ -317,8 +281,8 @@ class SecondPageState extends State<SecondPage> {
     double statusBar = ScreenUtil.getInstance().statusBarHeight;
     double width = ScreenUtil.getInstance().screenWidth;
     double height = ScreenUtil.getInstance().screenHeight;
-    print(
-        "thll  SecondPage statusBar: $statusBar, width: $width, height: $height");
+    LogUtil.e(
+        "SecondPage statusBar: $statusBar, width: $width, height: $height");
 
     return Scaffold(
       appBar: AppBar(
@@ -368,5 +332,27 @@ class SecondPageState extends State<SecondPage> {
         ],
       ),
     );
+  }
+}
+
+class City {
+  String name;
+
+  City({this.name});
+
+  /// must.
+  City.fromJson(Map<String, dynamic> json) : name = json['name'];
+
+  /// must.
+  Map<String, dynamic> toJson() => {
+        'name': name,
+      };
+
+  @override
+  String toString() {
+    StringBuffer sb = StringBuffer('{');
+    sb.write("\"name\":\"$name\"");
+    sb.write('}');
+    return sb.toString();
   }
 }
