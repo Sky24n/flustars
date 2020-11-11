@@ -18,3 +18,7 @@ dependencies:
   synchronized: '>=1.5.1 <4.0.0'
   # https://github.com/flutter/plugins/tree/master/packages/path_provider
   path_provider: '>=1.2.0 <3.0.0'
+  # 摄像头
+  camera: ^0.5.8+11
+  #图片
+  image: ^2.1.18
