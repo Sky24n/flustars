@@ -7,14 +7,14 @@ Flutter common utils library, SharedPreferences Util, Screen Util, Directory Uti
 
 Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
 
-[✓] Flutter (Channel stable, v1.17.0, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, v2.0.0, locale zh-Hans-CN)
 
 ## Get started
 
 ### Add dependency
 ```yaml
 dependencies:
-  flustars: ^0.3.2
+  flustars: ^2.0.0
   
 import 'package:flustars/flustars.dart';
 
@@ -28,6 +28,8 @@ dependencies:
 ```
 
 ### [Change Log](CHANGE_LOG.md)
+v2.0.0  
+Migrate to null-safety.
 
 v0.3.2
 remove MyAppBar。
@@ -534,10 +536,6 @@ I/flutter ( 5922): [response  ]:   {data: {curPage: 1, datas: [], offset: 0, ove
 >    - |-- timer_page.dart 倒计时/定时任务示例
 >    - |-- widget_page.dart 获取Widget尺寸/屏幕坐标示例
 
-## 点击下载APK : [v0.1.x][flutter_wanandroid_apk] 
-## 扫码下载APK :
-  ![flutter_wanandroid][flutter_wanandroid_qr] 
-
 ### Screenshots
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20181003-234414.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20181003-211011.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180930-012302.jpg" width="200">  
 <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180930-012431.jpg" width="200">  <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180919-231618.jpg" width="200">   <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_demos/Screenshot_20180926-144840.png" width="200">  
@@ -546,7 +544,11 @@ I/flutter ( 5922): [response  ]:   {data: {curPage: 1, datas: [], offset: 0, ove
 ### 关于作者
 GitHub : [Sky24n](https://github.com/Sky24n)  
 简书 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://www.jianshu.com/u/cbf2ad25d33a)  
-掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)  
+掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)
+
+### Apps
+[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)  
+[Moss App](https://github.com/Sky24n/Moss)
  
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
 [flutter_wanandroid_apk]: https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk

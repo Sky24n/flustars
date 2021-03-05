@@ -33,10 +33,10 @@ bool _initStorageDir = false;
 
 /// 配置初始化Directory。
 void setInitDir({
-  bool initTempDir,
-  bool initAppDocDir,
-  bool initAppSupportDir,
-  bool initStorageDir,
+  bool? initTempDir,
+  bool? initAppDocDir,
+  bool? initAppSupportDir,
+  bool? initStorageDir,
 }) {
   _initTempDir = initTempDir ?? _initTempDir;
   _initAppDocDir = initAppDocDir ?? _initAppDocDir;
@@ -54,16 +54,16 @@ void setInitDir({
 
 /// DirectoryUtil。
 class DirectoryUtil {
-  static DirectoryUtil _singleton;
+  static DirectoryUtil? _singleton;
 
   static Lock _lock = Lock();
 
-  static Directory _tempDir;
-  static Directory _appDocDir;
-  static Directory _appSupportDir;
-  static Directory _storageDir;
+  static Directory? _tempDir;
+  static Directory? _appDocDir;
+  static Directory? _appSupportDir;
+  static Directory? _storageDir;
 
-  static Future<DirectoryUtil> getInstance() async {
+  static Future<DirectoryUtil?> getInstance() async {
     if (_singleton == null) {
       await _lock.synchronized(() async {
         if (_singleton == null) {
@@ -98,28 +98,28 @@ class DirectoryUtil {
         "thll DirectoryUtil init : ${DateTime.now().millisecondsSinceEpoch - old}");
   }
 
-  static Future<Directory> initTempDir() async {
+  static Future<Directory?> initTempDir() async {
     if (_tempDir == null) {
       _tempDir = await getTemporaryDirectory();
     }
     return _tempDir;
   }
 
-  static Future<Directory> initAppDocDir() async {
+  static Future<Directory?> initAppDocDir() async {
     if (_appDocDir == null) {
       _appDocDir = await getApplicationDocumentsDirectory();
     }
     return _appDocDir;
   }
 
-  static Future<Directory> initAppSupportDir() async {
+  static Future<Directory?> initAppSupportDir() async {
     if (_appSupportDir == null) {
       _appSupportDir = await getApplicationSupportDirectory();
     }
     return _appSupportDir;
   }
 
-  static Future<Directory> initStorageDir() async {
+  static Future<Directory?> initStorageDir() async {
     if (_storageDir == null) {
       if (Platform.isAndroid) {
         _storageDir = await getExternalStorageDirectory();
@@ -129,7 +129,7 @@ class DirectoryUtil {
   }
 
   /// 同步创建文件夹
-  static Directory createDirSync(String path) {
+  static Directory? createDirSync(String? path) {
     if (path == null) return null;
     Directory dir = Directory(path);
     if (!dir.existsSync()) {
@@ -139,7 +139,7 @@ class DirectoryUtil {
   }
 
   /// 异步创建文件夹
-  static Future<Directory> createDir(String path) async {
+  static Future<Directory?> createDir(String? path) async {
     if (path == null) return null;
     Directory dir = Directory(path);
     bool exist = await dir.exists();
@@ -154,11 +154,11 @@ class DirectoryUtil {
   /// category 分类，例如：Download，Pictures, Music等等
   /// fileName 文件名
   /// format 文件格式，如果文件名包含格式，则不需要
-  static String getPath(
-    Directory dir, {
-    String category,
-    String fileName,
-    String format,
+  static String? getPath(
+    Directory? dir, {
+    String? category,
+    String? fileName,
+    String? format,
   }) {
     if (dir == null) return null;
     StringBuffer sb = StringBuffer("${dir.path}");
@@ -176,10 +176,10 @@ class DirectoryUtil {
   /// String path = DirectoryUtil.getTempPath(category: 'Pictures', fileName: 'demo', format: 'png');
   /// Android: /data/user/0/com.thl.flustars_example/cache/Pictures/demo.png
   /// iOS: xxx;
-  static String getTempPath({
-    String category,
-    String fileName,
-    String format,
+  static String? getTempPath({
+    String? category,
+    String? fileName,
+    String? format,
   }) {
     return getPath(_tempDir,
         category: category, fileName: fileName, format: format);
@@ -193,10 +193,10 @@ class DirectoryUtil {
   /// String path = DirectoryUtil.getAppDocPath(category: 'Pictures', fileName: 'demo', format: 'png');
   /// Android: /data/user/0/com.thl.flustars_example/app_flutter/Pictures/demo.png
   /// iOS: xxx;
-  static String getAppDocPath({
-    String category,
-    String fileName,
-    String format,
+  static String? getAppDocPath({
+    String? category,
+    String? fileName,
+    String? format,
   }) {
     return getPath(_appDocDir,
         category: category, fileName: fileName, format: format);
@@ -210,10 +210,10 @@ class DirectoryUtil {
   /// String path = DirectoryUtil.getAppSupportPath(category: 'Pictures', fileName: 'demo', format: 'png');
   /// Android: /data/user/0/com.thl.flustars_example/files/Pictures/demo.png
   /// iOS: xxx;
-  static String getAppSupportPath({
-    String category,
-    String fileName,
-    String format,
+  static String? getAppSupportPath({
+    String? category,
+    String? fileName,
+    String? format,
   }) {
     return getPath(_appSupportDir,
         category: category, fileName: fileName, format: format);
@@ -227,8 +227,8 @@ class DirectoryUtil {
   /// String path = DirectoryUtil.getStoragePath(category: 'Download', fileName: 'demo', format: 'apk');
   /// Android: /storage/emulated/0/Android/data/com.thl.flustars_example/files/Download/demo.apk
   /// iOS: xxx;
-  static String getStoragePath(
-      {String category, String fileName, String format}) {
+  static String? getStoragePath(
+      {String? category, String? fileName, String? format}) {
     return getPath(
       _storageDir,
       category: category,
@@ -237,47 +237,47 @@ class DirectoryUtil {
     );
   }
 
-  static Directory createTempDirSync({String category}) {
-    String path = getTempPath(category: category);
+  static Directory? createTempDirSync({String? category}) {
+    String? path = getTempPath(category: category);
     return createDirSync(path);
   }
 
-  static Directory createAppDocDirSync({String category}) {
-    String path = getAppDocPath(category: category);
+  static Directory? createAppDocDirSync({String? category}) {
+    String? path = getAppDocPath(category: category);
     return createDirSync(path);
   }
 
-  static Directory createAppSupportDirSync({String category}) {
-    String path = getAppSupportPath(category: category);
+  static Directory? createAppSupportDirSync({String? category}) {
+    String? path = getAppSupportPath(category: category);
     return createDirSync(path);
   }
 
-  static Directory createStorageDirSync({String category}) {
-    String path = getStoragePath(category: category);
+  static Directory? createStorageDirSync({String? category}) {
+    String? path = getStoragePath(category: category);
     return createDirSync(path);
   }
 
-  static Future<Directory> createTempDir({String category}) async {
+  static Future<Directory?> createTempDir({String? category}) async {
     await initTempDir();
-    String path = getTempPath(category: category);
+    String? path = getTempPath(category: category);
     return createDir(path);
   }
 
-  static Future<Directory> createAppDocDir({String category}) async {
+  static Future<Directory?> createAppDocDir({String? category}) async {
     await initAppDocDir();
-    String path = getAppDocPath(category: category);
+    String? path = getAppDocPath(category: category);
     return createDir(path);
   }
 
-  static Future<Directory> createAppSupportDir({String category}) async {
+  static Future<Directory?> createAppSupportDir({String? category}) async {
     await initAppSupportDir();
-    String path = getAppSupportPath(category: category);
+    String? path = getAppSupportPath(category: category);
     return createDir(path);
   }
 
-  static Future<Directory> createStorageDir({String category}) async {
+  static Future<Directory?> createStorageDir({String? category}) async {
     await initStorageDir();
-    String path = getStoragePath(category: category);
+    String? path = getStoragePath(category: category);
     return createDir(path);
   }
 }

@@ -1,3 +1,7 @@
+## 2.0.0
+
+* TODO: Migrate to null-safety.
+
 ## 0.3.3
 
 * TODO: split [sp_util](https://github.com/Sky24n/sp_util) as a separate library.

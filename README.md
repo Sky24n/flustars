@@ -7,19 +7,22 @@ Language: [English](README-EN.md) | 中文简体
 flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/common_utils),以及对其他第三方库封装，致力于为大家分享简单易用工具类。如果你有好的工具类欢迎PR.  
 目前包含SharedPreferences Util, Screen Util, Directory Util, Widget Util, Image Util。
 
-[✓] Flutter (Channel stable, v1.17.0, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, v2.0.0, locale zh-Hans-CN)
 
 ### Pub
 ```yaml
 dependencies:
-  flustars: ^0.3.3
+  flustars: ^2.0.0
   
   # https://github.com/Sky24n/sp_util
   # sp_util分拆成单独的库，可以直接引用
-  sp_util: ^1.0.1
+  sp_util: ^2.0.0
 ```
 
 ### [Change Log](CHANGE_LOG.md)
+v2.0.0  
+Migrate to null-safety.
+
 v0.3.3  
 分拆[sp_util](https://github.com/Sky24n/sp_util)成单独的库，可以直接引用
 
@@ -350,19 +353,15 @@ I/flutter ( 5922): [reqdata   ]:   null
 I/flutter ( 5922): [response  ]:   {data: {curPage: 1, datas: [], offset: 0, over: true, pageCount: 0, size: 20, total: 0}, errorCode: 0, errorMsg: }
 ```
 
-### App
-Github：[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)  
-Apk &nbsp;&nbsp;&nbsp;&nbsp;：[Demos](https://github.com/Sky24n/Doc)
-
 ### 关于作者
 GitHub &nbsp;&nbsp;&nbsp;: [Sky24n](https://github.com/Sky24n)  
 简书 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://www.jianshu.com/u/cbf2ad25d33a)  
 掘金 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)  
 项目合集 : [FlutterRepos](https://github.com/Sky24n/FlutterRepos)
 
-⭐⭐⭐ 最新开源 ⭐⭐⭐  
-[nine_grid_view](https://github.com/flutterchina/nine_grid_view)  
-Flutter仿微信/微博九宫格、拖拽排序，钉钉群组，微信群组，QQ讨论组头像。
+### Apps
+[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)  
+[Moss App](https://github.com/Sky24n/Moss)
 
 
 [flutter_wanandroid_github]: https://github.com/Sky24n/flutter_wanandroid
