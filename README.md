@@ -12,11 +12,11 @@ flustars依赖于Dart常用工具类库[common_utils](https://github.com/Sky24n/
 ### Pub
 ```yaml
 dependencies:
-  flustars: ^2.0.0
+  flustars: ^2.0.1
   
   # https://github.com/Sky24n/sp_util
   # sp_util分拆成单独的库，可以直接引用
-  sp_util: ^2.0.0
+  sp_util: ^2.0.3
 ```
 
 ### [Change Log](CHANGE_LOG.md)

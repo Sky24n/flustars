@@ -27,27 +27,27 @@ class _MyAppState extends State<MyApp> {
     await SpUtil.getInstance();
 
     SpUtil.putString("username", "sky24");
-    String userName = SpUtil.getString("username", defValue: "");
-    LogUtil.e("userName: " + userName);
+    String? userName = SpUtil.getString("username", defValue: "");
+    LogUtil.e("userName: $userName");
 
     /// save object example.
     /// 存储实体对象示例。
-    City city = City();
-    city.name = "成都市";
+    City city = City(name: "成都市");
     SpUtil.putObject("loc_city", city);
 
-    City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v));
+    City? hisCity = SpUtil.getObj(
+        "loc_city", (v) => City.fromJson(v as Map<String, dynamic>));
     LogUtil.e("City: " + (hisCity == null ? "null" : hisCity.toString()));
 
     /// save object list example.
     /// 存储实体对象list示例。
-    List<City> list = List();
+    List<City> list = [];
     list.add(City(name: "成都市"));
     list.add(City(name: "北京市"));
     SpUtil.putObjectList("loc_city_list", list);
 
-    List<City> dataList =
-        SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
+    List<City>? dataList = SpUtil.getObjList(
+        "loc_city_list", (v) => City.fromJson(v as Map<String, dynamic>));
     LogUtil.e("CityList: " + (dataList == null ? "null" : dataList.toString()));
   }
 
@@ -74,19 +74,19 @@ class MainPageState extends State<MainPage> {
   void test2() async {
     LogUtil.e("xxxxxxxxxxx test7......");
     await DirectoryUtil.getInstance();
-    String tempPath = DirectoryUtil.getTempPath(
+    String? tempPath = DirectoryUtil.getTempPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     LogUtil.e("tempPath: $tempPath");
 
-    String appDocPath = DirectoryUtil.getAppDocPath(
+    String? appDocPath = DirectoryUtil.getAppDocPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     LogUtil.e("appDocPath: $appDocPath");
 
-    String appSupportPath = DirectoryUtil.getAppSupportPath(
+    String? appSupportPath = DirectoryUtil.getAppSupportPath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     LogUtil.e("appSupportPath: $appSupportPath");
 
-    String storagePath = DirectoryUtil.getStoragePath(
+    String? storagePath = DirectoryUtil.getStoragePath(
         category: 'Pictures', fileName: 'demo', format: 'png');
     LogUtil.e("storagePath: $storagePath");
   }
@@ -338,7 +338,7 @@ class SecondPageState extends State<SecondPage> {
 class City {
   String name;
 
-  City({this.name});
+  City({required this.name});
 
   /// must.
   City.fromJson(Map<String, dynamic> json) : name = json['name'];

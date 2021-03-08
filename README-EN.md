@@ -14,7 +14,7 @@ Pub [flustars](https://pub.flutter-io.cn/packages/flustars)
 ### Add dependency
 ```yaml
 dependencies:
-  flustars: ^2.0.0
+  flustars: ^2.01
   
 import 'package:flustars/flustars.dart';
 

@@ -1,3 +1,7 @@
+## 2.0.1
+
+* TODO: dependencies update.
+
 ## 2.0.0
 
 * TODO: Migrate to null-safety.
