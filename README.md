@@ -364,7 +364,7 @@ Please see the [Changelog](CHANGELOG.md) page to know what's recently changed.
 
 ### Apps
 [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)  
-[[Moss](https://github.com/Sky24n/Moss).  
+[Moss](https://github.com/Sky24n/Moss).  
 A GitHub client app developed with Flutter, which supports Android iOS Web.  
 Web ：[Flutter Web](https://sky24n.gitee.io/moss/web/index.html).
 
