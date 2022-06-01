@@ -1,7 +1,7 @@
-name: flustars
-description: Flutter common utils library. SpUtil, ScreenUtil, WidgetUtil, DirectoryUtil, ImageUtil. SharedPreferences Util. Screen info & Screen adaptation. get image size.
-version: 2.0.1
-homepage: https://github.com/Sky24n/flustars
+name: flustars_flutter3
+description: flustars flutter3版本
+version: 3.0.0
+homepage: https://github.com/mdddj/flustars
 
 environment:
   sdk: ">=2.12.0-259.9.beta <3.0.0"
